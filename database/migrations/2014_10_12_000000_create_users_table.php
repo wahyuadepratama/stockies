@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('jenis_kelamin')->nullable();
             $table->date('tanggal_lahir')->nullable();
+            $table->string('phone')->nullable();
             $table->string('avatar')->default('default-avatar.png');
             $table->integer('role_id')->unsigned()->index();
             $table->rememberToken();

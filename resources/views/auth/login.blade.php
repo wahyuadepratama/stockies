@@ -1,69 +1,96 @@
-@extends('layouts.app')
+<!DOCTYPE HTML>
+<html>
+	<head>
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+  @include('guest.includes.head')
+  @include('guest.includes.head-index')
 
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
+	</head>
+	<body>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+	<div class="fh5co-loader"></div>
 
-                            <div class="col-md-6">
-                                <input id="email" type="text" class="form-control" name="identity" value="{{ old('email') }}" required autofocus>
+	<div id="page">
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+  @include('guest.layouts.navbar')
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+	<aside id="fh5co-hero" class="">
+		<div class="flexslider">
+			<ul class="slides">
+		   	<li style="background-image: url({{asset('storage/images/instagram-com-jamie_fenn-1.png')}});">
+		   		<div class="overlay-gradient"></div>
+		   		<div class="container">
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+		   			<div class="col-md-2"></div>
+		   			<div class="col-md-1"></div>
+		   			<div class="col-md-6 col-sm-4 col-md-offset-3 col-md-pull-3 js-fullheight slider-text">
+		   				<div class="slider-text-inner">
+		   					<div class="form-login">
+		   						<h3>Login</h3>
 
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                  <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                      {{ csrf_field() }}
+										<div class="row form-group">
+											<div class="col-md-12">
+												<!-- <label for="fname">Username</label> -->
+												<input type="text" id="fname" class="form-control" placeholder="Username or Email" name="identity" value="{{ old('identity') }}" required autofocus>
+                        @if ($errors->has('identity'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('identity') }}</strong>
+                            </span>
+                        @endif
+											</div>
+										</div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+										<div class="row form-group">
+											<div class="col-md-12">
+												<!-- <label for="password">Password</label> -->
+												<input id="password" type="password" class="form-control" name="password" placeholder="Password" required>
+                        @if ($errors->has('password'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                        @endif
+											</div>
+										</div>
 
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
+										<div class="col-md-5 col-sm-4 col-xs-5 text1">
+											<p><a href="{{ route('password.request') }}">Lupa Password</a></p>
+										</div>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+										<div class="col-md-1"></div>
+
+										<div class="col-md-7 col-sm-8 col-xs-7 text2">
+											<p>Belum punya Akun? <a href="/register">Daftar</a></p>
+										</div>
+
+										<div class="form-group">
+											<input type="submit" value="Login" class="btn btn-primary">
+										</div>
+
+									</form>
+
+			   					<!-- <p><a href="single.html" class="btn btn-primary btn-outline btn-lg">Purchase Now</a></p> -->
+		   					</div>
+		   				</div>
+		   			</div>
+
+
+		   		</div>
+		   	</li>
+		   </ul>
+		</div>
+	</aside>
+
+	@include('guest.layouts.footer')
+
+	</div>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+	</div>
+
+  @include('guest.includes.script-index')
+
+	</body>
+</html>

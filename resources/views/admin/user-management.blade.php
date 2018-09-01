@@ -16,7 +16,7 @@
                       <div class="card-body table-full-width table-responsive">
                           <table class="table table-hover table-striped">
                               <thead>
-                                  <th>No</th>
+                                  <th>Id</th>
                                   <th>Name</th>
                                   <th>Username</th>
                                   <th>Action</th>
@@ -29,7 +29,7 @@
                                       <td>{{$data->name}}</td>
                                       <td>{{$data->username}}</td>
                                       <td>
-                                        <a class="btn btn-warning btn-fill" data-toggle="modal" data-target="#view{{$data->id}}" href="#view{{$data->id}}">
+                                        <a class="btn btn-info btn-fill" data-toggle="modal" data-target="#view{{$data->id}}" href="#view{{$data->id}}">
                                             view
                                         </a>&nbsp;
 
@@ -63,7 +63,6 @@
                                             </div>
                                             <!--  End Modal -->
 
-                                        <a href="#"><button type="submit" class="btn btn-info btn-fill pull-right "><li class="fa fa-edit"></li></button></a>&nbsp;
                                         <a class="btn btn-danger btn-fill" data-toggle="modal" data-target="#delete{{$data->id}}" href="#delete{{$data->id}}"><li class="fa fa-times"></li></a>&nbsp;
 
                                         <div class="modal fade modal modal-primary" id="delete{{$data->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -75,7 +74,7 @@
                                                       </div>
                                                   </div>
                                                   <div class="modal-body text-center">
-                                                      <p>Apakah anda yakin user ini akan dihapus?</p>
+                                                      <p>Apakah anda yakin, user ini akan dihapus?</p>
                                                   </div>
                                                   <div class="modal-footer">
                                                     <form action="/admin/user-management/delete/{{$data->id}}" method="post">

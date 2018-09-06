@@ -14,10 +14,10 @@
 
       </div>
       <div class="col-md-2 account  tentangkami">
-        <p><a><img src="{{asset('storage/images/ic_account_circle_24px.png')}}">Tentang Kami</a></p>
+        <p><a href="/about"><img src="{{asset('storage/images/ic_account_circle_24px.png')}}">Tentang Kami</a></p>
       </div>
       <div class="col-md-2 account">
-        <p><a><img src="{{asset('storage/images/ic_account_circle_24px.png')}}">FAQ</a></p>
+        <p><a href="/faq"><img src="{{asset('storage/images/ic_account_circle_24px.png')}}">FAQ</a></p>
       </div>
 
     </div>

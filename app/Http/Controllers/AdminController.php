@@ -23,7 +23,7 @@ class AdminController extends Controller
     }
 
     public function getAllUser(){
-      $users = User::with('role')->where('role_id',2)->orderBy('name')->get();      
+      $users = User::with('role')->where('role_id',2)->orderBy('name')->get();
       $deletedUsers = User::onlyTrashed()->get();
 
       return view('admin/user-management', ['users' => $users, 'deletedUsers'=>$deletedUsers]);
@@ -50,9 +50,11 @@ class AdminController extends Controller
 
     public function keywordStore(Request $request)
     {
-      $this->validate($request,[
-        'keyword'  => 'required|unique:keywords'
-      ]);
+      if(Keyword::find(1)){
+        $this->validate($request,[
+          'keyword'  => 'required|unique:keywords'
+        ]);
+      }        
 
       Keyword::create([
         'nama' => $request['keyword']

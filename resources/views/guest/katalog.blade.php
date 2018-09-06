@@ -1,18 +1,6 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
+@extends('guest.master')
 
-	@include('guest.includes.head')
-	@include('guest.includes.head-index')
-
-	</head>
-	<body>
-
-	<div class="fh5co-loader"></div>
-
-	<div id="page">
-
-	@include('guest.layouts.navbar')
+@section('content')
 
 	@include('guest.layouts.search-form')
 
@@ -96,16 +84,18 @@
 				</div>
 	    </div>
 
-			<div class="col-md-2"></div>
-			<div class="col-md-2"></div>
-			<div class="col-md-1"></div>
-			<div id="loadMore" style="">
-				<a href="#">
-					<div class="col-md-2 button" style="margin-bottom: 30px; margin-top: 30px;">
-					    <p>Load More</p>
-					</div>
-				</a>
-			</div>
+			@if($x > 3)
+				<div class="col-md-2"></div>
+				<div class="col-md-2"></div>
+				<div class="col-md-1"></div>
+				<div id="loadMore" style="">
+					<a href="#">
+						<div class="col-md-2 button" style="margin-bottom: 30px; margin-top: 30px;">
+						    <p>Load More</p>
+						</div>
+					</a>
+				</div>
+			@endif
 
 		</div>
 	</div>
@@ -139,19 +129,6 @@
 		</div>
 	</div>
 
-	@include('guest.layouts.footer')
-
-	</div>
-
-	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-	</div>
-
-	@include('guest.includes.script-index')
-
-	</body>
-</html>
-
 <script type="text/javascript">
 	$( document ).ready(function () {
 
@@ -170,3 +147,5 @@
 	});
 });
 </script>
+
+@endsection

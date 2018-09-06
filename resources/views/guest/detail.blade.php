@@ -1,19 +1,9 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-	   @include('guest.includes.head')
-     @include('guest.includes.head-index')
-	</head>
-	<body>
+@extends('guest.master')
 
-	<div class="fh5co-loader"></div>
-
-	<div id="page">
-
-	@include('guest.layouts.navbar')
+@section('content')
 
 	<div class="container">
-	<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url({{asset('storage/photo/'.$photo->medium)}});">
+	<header id="image" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url({{asset('storage/photo/'.$photo->large)}});">
 		<div class="overlay"></div>
 
 			<div class="row">
@@ -39,22 +29,15 @@
 
 	<div id="fh5co-product">
 		<div class="container">
-
 			<div class="row">
 					<div class="fh5co-tabs animate-box col-md-12 ">
 						<!-- Tabs -->
 						<div class="fh5co-tab-content-wrap">
-
 							<div class="fh5co-tab-content tab-content active" data-tab-content="1">
 
 								<div class="col-md-7">
 									<h2>{{$photo->nama}}</h2>
 									<p>Foto Oleh <a>{{$photo->user->name}}</a></p>
-
-									<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-									tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-									quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-									consequat.</p>
 
 									<div class="row">
 										<div class="col-md-12">
@@ -91,17 +74,126 @@
 												<div class=""><p>{{$countLike}}</p></div>
 											@endif
 										</div>
-										<div class="col-md-3 col-sm-6 col-xs-6">
-											<img src="{{asset('storage/images/ic_file_download_24px.png')}}">
-											<div class=""><p>2k</p></div>
+
+										<div class="col-md-3 col-sm-6 col-xs-4">
+											<img src="{{asset('storage/images/ic_share_24px.png')}}">
+										</div>
+
+									<form action="/cart" method="post">
+										<div class="col-md-12 col-sm-12 col-xs-12">
+											<select name="data" onchange="change(this.value)" class="option_ukuran form-control koption">
+												<option value="0">Pilih ukuran</option>
+												<option value="{{ $photo->price_small }}|{{ $photo->small }}|{{ $photo->thumbnail }}" >S (500x334px and Price Rp.{{$photo->price_small}})</option>
+												<option value="{{ $photo->price_medium }}|{{ $photo->medium }}|{{ $photo->thumbnail }}">M (1000x667px and Price Rp.{{$photo->price_medium}})</option>
+												<option value="{{ $photo->price_large }}|{{ $photo->large }}|{{ $photo->thumbnail }}">L (6000x4000px and Price Rp.{{$photo->price_large}})</option>
+											</select>
+										</div>
+
+										<div class="col-md-12 col-sm-12 col-xs-12">
+											<div class="option_ukuran">
+
+													{{ csrf_field() }}
+													<input type="hidden" name="nama" value="{{$photo->nama}}">
+													<input type="hidden" name="id" value="{{$photo->id}}">
+													<input type="hidden" name="name" value="{{$photo->user->name}}">
+													<input type="hidden" name="username" value="{{$photo->user->username}}">
+													<input type="submit" class="btn btn-default btn-block" value="Dapatkan foto ini">
+
+												<script type="text/javascript">
+													function change($value){
+														if($value == "{{ $photo->price_small }}|{{ $photo->small }}|{{ $photo->thumbnail }}"){
+															return document.getElementById("image").style.backgroundImage = "url({{asset('storage/photo/')}}"+"/{{$photo->small}})";
+														}
+														if($value == "{{ $photo->price_medium }}|{{ $photo->medium }}|{{ $photo->thumbnail }}"){
+															return document.getElementById("image").style.backgroundImage = "url({{asset('storage/photo/')}}"+"/{{$photo->medium}})";
+														}
+														if($value == "{{ $photo->price_large }}|{{ $photo->large }}|{{ $photo->thumbnail }}"){
+															return document.getElementById("image").style.backgroundImage = "url({{asset('storage/photo/')}}"+"/{{$photo->large}})";
+														}
+													}
+												</script>
+											</div>
+										</div>
+									</form>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="fh5co-product">
+		<div class="container ">
+			<div class="row">
+					<div class="fh5co-tabs animate-box col-md-12 ">
+						<!-- Tabs -->
+						<div class="komentar fh5co-tab-content-wrap">
+							<div class="fh5co-tab-content">
+									<div class="col-md-12">
+										<div class="col-md-7">
+											<div class="row">
+													<div class="col-md-3">
+														<p class=" kategori-text">Komentar</p>
+													</div>
+											</div>
 										</div>
 									</div>
 
-								</div>
-							</div>
+									@foreach($comment as $key2)
+									<div class="col-sm-12">
+										<div class="col-md-1"></div>
+										<div class="col-md-8 col-xs-12 komentar_konten">
+											<div class="col-md-2 col-sm-2 col-xs-4">
+												<img src="{{asset('storage/avatar/default-avatar.png')}}">
+											</div>
+
+											<div class="col-md-10">
+												<div class="nama_user ">{{$key2->user->username}}</div>
+												<div class="isi_komentar"> {{$key2->body}} </div>
+												<div class="ket_waktu col-md-12 col-sm-12 col-xs-12">
+
+													<div class="col-md-5 col-sm-2 ">
+														<a>{{ \Carbon\Carbon::parse($key2->created_at)->format('d M Y / H:i:s')}}<a>
+													</div>
+
+												</div>
+											</div>
+										</div>
+									</div>
+									@endforeach
+
+									@if(isset(Auth::user()->role_id))
+									<div class="col-sm-12 tulis_komentar">
+										<div class="col-md-1"></div>
+										<div class="col-md-8 col-sm-8 col-xs-12 komentar_konten ">
+											<div class="col-md-2 col-sm-2 col-xs-4">
+												<img src="{{asset('storage/images/Group 99.png')}}">
+											</div>
+											<div class="col-md-10 col-sm-10">
+												<div class="row form-group col-sm-12">
+													<div class="col-md-12">
+														<!-- <label for="message">Message</label> -->
+														<form action="/comment/save/{{$photo->id}}" method="post">
+															{{ csrf_field() }}
+															<textarea style="width:100%;margin-bottom:2%;" name="body" id="message" cols="50" rows="10" class="form-control" placeholder="Tulis komentar anda..."></textarea>
+															<input type="submit" class="btn" value="Kirim"></input>
+														</form>
+													</div>
+												</div>
+												<!-- <div class="button_send">
+													<img src="{{asset('storage/images/ic_comment_24px.png')}}">
+												</div> -->
+											</div>
+										</div>
+									</div>
+									@endif
 
 						</div>
-
 					</div>
 				</div>
 			</div>
@@ -136,10 +228,6 @@
 									<h3 class="col-md-12 col-sm-12 col-xs-12"><a href="/detail/{{$key1->slug}}">{{$key1->nama}}</a></h3>
 									<span class="price col-md-12 col-sm-12 col-xs-12"><p>Karya {{$key1->user->name}}</p></span>
 								</div>
-								<!-- <div class="col-md-2 col-sm-2 col-xs-2 like" >
-									<img src="{{asset('storage/images/ic_favorite_24px.png')}}">
-									<span><p>35k</p></span>
-								</div> -->
 						</div>
 					</div>
 				</div>
@@ -157,15 +245,4 @@
 		</div>
 	</div>
 
-  @include('guest.layouts.footer')
-
-	</div>
-
-	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-	</div>
-
-  @include('guest.includes.script-index')
-
-	</body>
-</html>
+@endsection

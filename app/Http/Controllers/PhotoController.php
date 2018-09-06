@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Photo;
 use App\Models\Status;
+use App\Models\Comment;
 use App\Models\Keyword;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -21,29 +22,37 @@ class PhotoController extends Controller
 {
     public function index()
     {
+      $one = Photo::active()->with('user')->paginate(9);
+
+      return view('guest.gallery')->with('gallery', $one);
+    }
+
+    public function indexFavorite()
+    {
       $one = Status::with('photo')
              ->select('status.*',DB::raw('COUNT(id_photo) as count'))
              ->groupBy('status.id_photo')
              ->orderBy('count','desc')
              ->take(6)
              ->get();
-      $two = Photo::with('category')->with('user')->groupBy('id_category')->orderBy('id_category','desc')->get();
+      $two = Photo::active()->with('category')->with('user')->groupBy('id_category')->orderBy('id_category','desc')->get();
 
       return view('guest.katalog')->with('favorite', $one)->with('category', $two);
     }
 
     public function show($slug)
     {
-      $one = Photo::with('user')->with('category')->where('slug',$slug)->first();      
+      $one = Photo::active()->with('user')->with('category')->where('slug',$slug)->first();
       $two = KeywordPhoto::with('keyword')->where('id_photo',$one->id)->get();
-      $three = Photo::with('user')->inRandomOrder()->take(3)->get();
+      $three = Photo::active()->with('user')->inRandomOrder()->take(3)->get();
 
-      if(Auth::user() == null)
-        $four = "belum login";
-      else
-        $four = Status::where('id_user',Auth::user()->id)->where('id_photo',$one->id)->first();
+        if(Auth::user() == null)
+          $four = "belum login";
+        else
+          $four = Status::where('id_user',Auth::user()->id)->where('id_photo',$one->id)->first();
 
       $five = Status::where('id_photo', $one->id)->get();
+      $six = Comment::with('user')->where('id_photo',$one->id)->orderBy('created_at','asc')->get();
 
       if(isset($five))
         $five = $five->count();
@@ -54,7 +63,8 @@ class PhotoController extends Controller
                                 ->with('keyword', $two)
                                 ->with('lainnya', $three)
                                 ->with('like', $four)
-                                ->with('countLike', $five);
+                                ->with('countLike', $five)
+                                ->with('comment', $six);
     }
 
     public function store(Request $request)
@@ -91,6 +101,18 @@ class PhotoController extends Controller
             $createLarge = Image::make($thumbnail)->resize($conf['large']['x'], $conf['large']['y'])->save($large);
             $this->watermark($createLarge,$large);
 
+            //------------------------------ ORIGINAL FOTO ---------------------------------
+
+            $large_ori   = 'storage/original_photo/' . $request->name . '_large_'.$filename;   // direktori gambar dengan nama uploads
+            Image::make($thumbnail)->resize($conf['large']['x'], $conf['large']['y'])->save($large_ori);
+
+            $medium_ori   = 'storage/original_photo/' . $request->name . '_medium_'.$filename;   // direktori gambar dengan nama uploads
+            Image::make($thumbnail)->resize($conf['medium']['x'], $conf['medium']['y'])->save($medium_ori);
+
+            $small_ori   = 'storage/original_photo/' . $request->name . '_small_'.$filename;   // direktori gambar dengan nama uploads
+            Image::make($thumbnail)->resize($conf['small']['x'], $conf['small']['y'])->save($small_ori);
+
+
             Photo::create([ //simpan ke database
               'nama' => $request->name,
               'slug' => str_slug($request->name.'-'.time()),
@@ -98,6 +120,9 @@ class PhotoController extends Controller
               'small' => 'small_'.$filename,
               'medium' => 'medium_'.$filename,
               'large' => 'large_'.$filename,
+              'small_ori' => $request->name.'_small_'.$filename,
+              'medium_ori' => $request->name.'_medium_'.$filename,
+              'large_ori' => $request->name.'_large_'.$filename,
               'price_small' => $request->price_small,
               'price_medium' => $request->price_medium,
               'price_large' => $request->price_large,
@@ -177,7 +202,7 @@ class PhotoController extends Controller
 
     public function showCategory($id)
     {
-      $one = Photo::with('user')->where('id_category',$id)->take(6)->get();
+      $one = Photo::active()->with('user')->where('id_category',$id)->take(6)->get();
       $two = Category::find($id);
 
       return view('guest.katalog-category')->with('detail', $one)->with('category', $two);
@@ -190,6 +215,7 @@ class PhotoController extends Controller
                 ->join('users','photos.id_user','=','users.id')
                 ->select('keywords.*', 'keywords_photos.*', 'photos.*', 'photos.nama as nama_foto', 'users.*')
                 ->where('keywords.nama','LIKE','%'.$request->search.'%')
+                ->where('photos.active','=',1)
                 ->groupBy('nama_foto')
                 ->get();
 

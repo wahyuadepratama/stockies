@@ -26,4 +26,8 @@ class User extends Authenticatable
     public function photo(){
       return $this->hasMany('App\Models\Photo');
     }
+
+    public function comment(){
+      return $this->hasMany('App\Models\Comment');
+    }
 }

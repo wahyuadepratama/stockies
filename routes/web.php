@@ -3,16 +3,31 @@
 Auth::routes();
 Route::get('home', 'HomeController@index');
 
-Route::get('katalog', 'PhotoController@index');
+Route::get('gallery', 'PhotoController@index');
+Route::get('katalog', 'PhotoController@indexFavorite');
 Route::get('katalog/{id}', 'PhotoController@showCategory');
 Route::post('katalog/search', 'PhotoController@searchKeyword');
 Route::get('detail/{slug}', 'PhotoController@show');
+Route::post('comment/save/{id}', 'CommentController@save');
 
+Route::get('cart','CartController@index');
+Route::post('cart','CartController@store');
+Route::get('cart/delete/{id}','CartController@destroy');
+Route::get('pembayaran', function(){ return view('guest.pembayaran'); });
+Route::post('pembayaran/save', 'CartController@save');
+Route::get('pembayaran/konfirmasi', function(){ return view('guest.pembayaran-konfirmasi'); });
+Route::get('pembayaran/konfirmasi/selesai', function(){ return view('guest.pembayaran-selesai'); });
+
+Route::get('about', function (){ return view('guest.about'); });
+Route::get('faq', function (){ return view('guest.faq'); });
+
+//-------------- Auth for PhotoController ------------//
 Route::group(['middleware' => 'auth'], function(){
     Route::post('photo/store', 'PhotoController@store');
     Route::get('like/{photo}', 'PhotoController@saveLike');
     Route::get('dislike/{photo}', 'PhotoController@destroyLike');
 });
+//-------------- End of auth for PhotoController ------------//
 
 //------------ Halaman admin --------------//
 Route::get('stockies-admin', 'AdminController@index');
@@ -32,7 +47,8 @@ Route::post('admin/user-management/restore/{id}','AdminController@restoreUser');
 
 // For first landing Page
 Route::get('/', function () {
-  $photo = App\Models\Photo::where('active', 0)
+  $photo = App\Models\Photo::active()
+               ->where('active', 1)
                ->orderBy('created_at', 'desc')
                ->take(9)
                ->get();

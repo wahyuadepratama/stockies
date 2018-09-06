@@ -14,3 +14,7 @@
 <script src="{{URL::asset('user-panel/js/jquery.flexslider-min.js')}}"></script>
 <!-- Main -->
 <script src="{{URL::asset('user-panel/js/main.js')}}"></script>
+
+<!-- notify -->
+<script src="{{URL::asset('user-panel/js/notify/notify.js')}}"></script>
+<script src="{{URL::asset('user-panel/js/notify/notify.min.js')}}"></script>

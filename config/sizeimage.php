@@ -22,7 +22,7 @@ return [
   ],
 
   'watermark' => [
-    'opacity' => 25, //semakin besar maka akan semakin jelas
+    'opacity' => 30, //semakin besar maka akan semakin jelas
     'percentage' => 50 //semakin kurang nilainya, maka akan semakin besar gambarnya
   ]
 ];

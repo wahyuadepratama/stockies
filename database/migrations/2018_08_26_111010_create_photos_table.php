@@ -16,6 +16,9 @@ class CreatePhotosTable extends Migration
           $table->string('small');
           $table->string('medium');
           $table->string('large');
+          $table->string('small_ori');
+          $table->string('medium_ori');
+          $table->string('large_ori');
           $table->integer('price_small');
           $table->integer('price_medium');
           $table->integer('price_large');

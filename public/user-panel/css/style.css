@@ -16,11 +16,7 @@ body {
   font-size: 16px;
   line-height: 1.7;
   color: #828282;
-  background: #fff;  
-}
-
-img {
-    pointer-events: none;
+  background: #fff;
 }
 
 #page {
@@ -96,6 +92,20 @@ h1, h2, h3, h4, h5, h6, figure {
   width: 100%;
   background-image: url(../../storage/images/navbar.png);
 }
+
+/*EDIT 30 AGUSTUS*/
+@media screen and (max-width: 1024px) {
+
+  .fh5co-nav .nav{
+    font-size: 1px;
+  }
+
+  .fh5co-nav .nav ul{
+    margin-left: -20%;
+  }
+
+}
+/*PENUTUP*/
 
 
 
@@ -206,7 +216,12 @@ h1, h2, h3, h4, h5, h6, figure {
   font-family: "Asap", sans-serif;
 }
 .fh5co-nav ul li a {
-  font-size: 14px;
+
+  /*EDIT 30 AGUSTUS*/
+  font-size: 16px;
+
+  /*PENUTUP*/
+
   padding: 30px 10px;
 /*  text-transform: uppercase;*/
   color: rgba(0, 0, 0, 0.5);
@@ -241,10 +256,12 @@ h1, h2, h3, h4, h5, h6, figure {
   position: relative;
 }
 .fh5co-nav ul li.has-dropdown .dropdown {
-  width: 150px;
-  -webkit-box-shadow: 0px 14px 33px -9px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 14px 33px -9px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 14px 33px -9px rgba(0, 0, 0, 0.75);
+  /*EDIT 30 AGUSTUS*/
+   width: 200px;
+   /*PENUTUP*/
+  -webkit-box-shadow: 0px 14px 33px -9px rgba(255, 255, 255, 0.75);
+  -moz-box-shadow: 0px 14px 33px -9px rgba(255, 255, 255, 0.75);
+  box-shadow: 0px 14px 33px -9px rgba(255, 255, 255, 0.75);
   z-index: 1002;
   visibility: hidden;
   opacity: 0;
@@ -252,8 +269,10 @@ h1, h2, h3, h4, h5, h6, figure {
   top: 40px;
   left: 0;
   text-align: left;
-  background: #000;
-  padding: 20px;
+  /*EDIT 30 AGUSTUS*/
+  background: white;
+  padding: 7px;
+   /*PENUTUP*/
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
@@ -271,7 +290,9 @@ h1, h2, h3, h4, h5, h6, figure {
   width: 0;
   position: absolute;
   pointer-events: none;
-  border-bottom-color: #000;
+  /*EDIT 30 AGUSTUS*/
+  border-bottom-color: white;
+  /*PENUTUP*/
   border-width: 8px;
   margin-left: -8px;
 }
@@ -522,16 +543,297 @@ border-top-right-radius: 20px;
   }
 }
 
+/*EDIT 20 AGUSTUS*/
 .about-content {
-  margin-bottom: 7em;
+  margin-bottom: 0em;
+  margin-top: 2em;
 }
+/*PENUTUP*/
+
 .about-content img {
   border: 1px solid rgba(0, 0, 0, 0.05);
   padding: 10px;
 }
+
+
+/*EDIT 30 AGUSTUS*/
+
+/*style faq*/
 .about-content .desc {
   margin-bottom: 3em;
+  text-align: justify;
 }
+
+.about-content .desc h3 {
+  color: #bf8b16;
+  border-bottom: 3px solid #bf8b16;
+  margin-bottom: 10%;
+  font-weight: bold;
+  padding-bottom: 2%;
+  display: inline-block;
+}
+
+
+.about-content .desc h4 {
+  font-weight: bold;
+
+}
+
+.about-content .desc p {
+  margin-bottom: 6%;
+}
+
+
+.about-content .desc a {
+  color: blue;
+  font-weight: bold;
+  border:12px solid white;
+
+}
+
+/*style about*/
+
+.about-content .tentang-kami h3{
+  color: #bf8b16;
+  border-bottom: 3px solid #bf8b16;
+  width: 23%;
+  margin-bottom: 5%;
+  font-weight: bold;
+  padding-bottom: 2%;
+
+}
+
+
+.about-content .transaksi-selesai .one .btn-primary{
+    width: 65%;
+    font-size: 20px;
+    font-weight: unset;
+    margin-top: 10%;
+
+}
+
+/*style konfirmasi_pembayaran*/
+
+.about-content .konfirmasi .one .btn-primary{
+    width: 65%;
+    font-size: 20px;
+    font-weight: unset;
+    margin-top: 10%;
+
+}
+
+.about-content .konfirmasi .choose a{
+  color: black;
+  border:1px solid black;
+  padding: 5px;
+}
+
+@media screen and (max-width: 380px) {
+  .about-content .konfirmasi .form-group .btn-primary {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .about-content .konfirmasi .form-group .btn-primary {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about-content .konfirmasi .form-group .btn-primary {
+    width: 35%;
+  }
+}
+
+/*style pembayaran*/
+
+  .about-content .pembayaran h3{
+    margin-left: -1%;
+    padding-bottom: 1%;
+    margin-top: 4%;
+    color:#bf8b16;
+    border-bottom:3px solid #bf8b16;
+    display: inline;
+    font-weight: bold;
+    margin-bottom: 5%;
+  }
+
+ .about-content .pembayaran .item{
+    margin-bottom: 5%;
+    margin-top: 5%;
+ }
+
+  .about-content .pembayaran .item h4{
+    border-bottom:2px solid black;
+    padding-bottom: 2%;
+    font-weight: bold;
+  }
+
+  .about-content .pembayaran .item .image{
+    margin-right: 8%;
+
+
+  }
+
+  .about-content .pembayaran .item img{
+    width: 35%;
+    margin-left: -3%;
+
+  }
+
+
+  .about-content .pembayaran .item .total p{
+    border:1px solid black;
+    color: black;
+    text-align: center;
+    display: block;
+    font-size: 35px;
+    padding: 30px 0 30px 0;
+  }
+
+  @media screen and (max-width: 380px) {
+  .about-content .pembayaran .item .total p {
+    font-size: 17px;
+    padding: -50px 0 -50px 0;
+  }
+
+  .about-content .pembayaran .item img {
+    width: 100%;
+  }
+
+
+}
+
+ @media screen and (max-width: 480px) {
+  .about-content .pembayaran .item .total p {
+    font-size: 25px;
+    padding: -50px 0 -50px 0;
+  }
+
+  .about-content .pembayaran .item img {
+    width: 100%;
+  }
+
+
+}
+
+@media screen and (max-width: 330px) {
+  .about-content .pembayaran .item .total p {
+    font-size: 25px;
+    padding: -50px 0 -50px 0;
+  }
+
+  .about-content .pembayaran .item img {
+    width: 100%;
+  }
+}
+
+  .about-content .pembayaran .item .total {
+    margin-top: .6%;
+  }
+
+  .about-content .pembayaran .item .total h4{
+    padding-bottom: 2%;
+    margin-bottom: 8%;
+  }
+
+
+  .about-content .pembayaran .item  .form-group .form-control {
+    font-size: 14px;
+    padding: -5px;
+    margin-bottom: 5%;
+  }
+
+  .about-content .pembayaran .item  .form-group .btn-primary {
+    font-size: 16px;
+    font-weight: unset;
+    width: 40%;
+  }
+
+  @media screen and (max-width: 330px) {
+  .about-content .pembayaran .item  .form-group .btn-primary {
+    font-size: 14px;
+    width: 50%;
+
+  }
+}
+
+
+
+  .about-content .pembayaran .item .transfer h4{
+    padding-bottom: 4%;
+  }
+
+  .about-content .pembayaran .item .transfer .space {
+    margin-bottom: 6%;
+  }
+
+
+  .about-content .pembayaran .item .transfer img{
+    width: 100%;
+  }
+
+
+   @media screen and (max-width: 380px) {
+  .about-content .pembayaran .item .transfer img{
+    width: 70%;
+  }
+}
+
+  @media screen and (max-width: 480px) {
+  .about-content .pembayaran .item .transfer img{
+    width: 70%;
+  }
+}
+
+  @media screen and (max-width: 768px) {
+  .about-content .pembayaran .item .transfer img{
+    width: 30%;
+  }
+}
+
+  .about-content .pembayaran .item .transfer .text {
+    font-weight: bold;
+  }
+
+  .about-content .pembayaran .item .transfer .text .no_rekening {
+    font-size: 18px;
+  }
+
+  .about-content .pembayaran .item .transfer .text .nama {
+    font-size: 13px;
+    text-align: left;
+  }
+
+
+  .about-content .form-group .form-pembayaran .item .btn-primary{
+    font-size: 10px;
+  }
+
+
+  #fh5co-started .button {
+    margin-top: -15%;
+  }
+
+  #fh5co-started .button p{
+    font-size: 20px;
+  }
+
+  #fh5co-started .button .checkout {
+    background-color: #696969;
+  }
+
+   #fh5co-started .button .pesanan {
+    background-color:#bf8b16;
+  }
+
+
+
+/*PENUTUP*/
+
+
+
 
 .fh5co-staff {
   text-align: center;
@@ -895,9 +1197,85 @@ border-top-right-radius: 20px;
   margin-bottom: 10%;
 }
 
-.product {
+
+
+/*EDIT 30 AGUSTUS*/
+
+
+#fh5co-product .keranjang h3{
+  border-bottom:3px solid #bf8b16;
+  color:#bf8b16;
+  font-weight: bold;
+  padding-bottom: 1%;
+  display: inline-block;
+  margin-top: 3%;
+
+}
+
+@media screen and (max-width: 330px) {
+ #fh5co-product .keranjang h3 {
+    margin-top: 15%;
+  }
+
+}
+
+
+@media screen and (max-width: 380px) {
+ #fh5co-product .keranjang h3 {
+    margin-top: 15%;
+  }
+
+}
+
+@media screen and (max-width: 480px) {
+ #fh5co-product .keranjang h3 {
+    margin-top: 15%;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+ #fh5co-product .keranjang h3 {
+    margin-top: 10%;
+    margin-bottom: -10%;
+  }
+
+  .keranjang .product .text .ukuran {
+    margin-left: 10%;
+  }
+
+}
+
+@media screen and (max-width: 1024px) {
+  .keranjang .product .text {
+    margin-left: 50%;
+    display: inline-block;
+  }
+
+}
+
+#fh5co-product .keranjang h3{
+  margin-bottom: 4%;
+}
+
+.keranjang .product {
   margin-bottom: 40px;
 }
+
+
+ .keranjang .product .product-grid {
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  position: relative;
+  height: 200px;
+  width: 300px;
+  margin-top: 5%;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
 .product .product-grid {
   background-size: cover;
   background-position: top center;
@@ -909,6 +1287,38 @@ border-top-right-radius: 20px;
   -o-transition: 0.3s;
   transition: 0.3s;
 }
+
+
+.tiga .product  .product-grid {
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  position: relative;
+  height: 230px;
+  width: 100%;
+  margin-bottom: 20px;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.empat .product  .product-grid {
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  position: relative;
+  height: 200px;
+  width: 100%;
+  margin-bottom: 20px;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+
+
+
+
 .product .product-grid .sale {
   position: absolute;
   top: 10px;
@@ -932,6 +1342,236 @@ border-top-right-radius: 20px;
   -o-transition: 0.3s;
   transition: 0.3s;
 }
+
+.keranjang .product .text {
+  margin-top: 20%;
+  margin-left: 20%;
+}
+
+
+
+ .keranjang .product .text h2{
+  font-weight: bold;
+}
+
+ .keranjang .product .text .ukuran{
+  margin-left: -7%;
+}
+
+ .keranjang .product .x img {
+  margin-top: 80%;
+}
+
+ .keranjang .product .price {
+  margin-top: 45%;
+}
+
+
+@media screen and (max-width: 768px) {
+   .keranjang .product .x img {
+  margin-top: -30%;
+
+}
+   .keranjang .product .text{
+    margin-left: 2%;
+    margin-top: -5%;
+  }
+
+   .keranjang .product .price h2{
+    margin-top: -64%;
+    margin-left: 80%;
+
+  }
+
+}
+
+
+@media screen and (max-width: 480px) {
+   .keranjang .product .x img {
+  margin-top: -60%;
+  margin-left: 50%;
+
+}
+   .keranjang .product .text{
+    margin-left: 2%;
+    margin-top: -5%;
+  }
+
+   .keranjang .product .price{
+    margin-top: -15%;
+    margin-left: -60%;
+  }
+
+   .keranjang .product .price h2{
+    font-size: 26px;
+    margin-top: -15%;
+    margin-left: -5%;
+    text-align: center;
+  }
+
+}
+
+@media screen and (max-width: 380px) {
+   .keranjang .product .x img {
+  margin-top: -68%;
+  margin-left: 70%;
+
+}
+   .keranjang .product .text{
+    margin-left: 2%;
+    margin-top: -5%;
+  }
+
+   .keranjang .product .price h2{
+    font-size: 23px;
+    margin-top: -15%;
+    margin-left: -4%;
+    text-align: center;
+  }
+
+}
+
+@media screen and (max-width: 330px) {
+   .keranjang .product .x img {
+  margin-top: -79%;
+  margin-left: 90%;
+
+}
+  .keranjang .product .text{
+    margin-left: 2%;
+    margin-top: -5%;
+  }
+
+   .keranjang .product .price h2{
+    font-size: 20px;
+    margin-top: -20%;
+    text-align: center;
+  }
+
+}
+
+#fh5co-product  .keranjang .border{
+  border-top: 2px solid #a8a8a8;
+  padding-top: 2%;
+}
+
+#fh5co-product  .keranjang .product2 h2{
+  font-weight: bold;
+  font-size: 25px;
+
+}
+
+#fh5co-product  .keranjang .product2 .text {
+  margin-left: 20%;
+}
+
+#fh5co-product  .keranjang .subtotal{
+  border-bottom: 2px solid #a8a8a8;
+}
+
+#fh5co-product  .keranjang .voucher {
+  padding-top: 2%;
+}
+
+#fh5co-product  .keranjang .voucher p{
+  color: black;
+  font-size: 18px;
+}
+
+#fh5co-product  .keranjang .voucher .number {
+  float: right;
+}
+
+#fh5co-product  .keranjang .voucher .number .btn {
+  background-color: #bf8b16;
+  color: white;
+  margin-top: 2%;
+  padding: 17px 0 17px 0;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+
+@media screen and (max-width: 768px) {
+   .potongan .product2 .price h2{
+    margin-left: 16%;
+  }
+
+   #fh5co-product .voucher .number .btn {
+    width: 75%;
+    float: right;
+   }
+
+}
+
+
+@media screen and (max-width: 480px) {
+  #fh5co-product .voucher .number .btn{
+    font-size: 14px;
+    width: 100%;
+    float: right;
+  }
+
+  #fh5co-product .voucher .number .form-group input{
+    font-size: 14px;
+    width: 100%;
+  }
+
+  #fh5co-product .product2 .price h2{
+    font-size:20px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  #fh5co-product .voucher .number .btn{
+    font-size: 14px;
+    width: 100%;
+  }
+
+  #fh5co-product .voucher .number .form-group input{
+    font-size: 11px;
+    width: 100%;
+  }
+
+  #fh5co-product .product2 .price h2{
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  #fh5co-product .voucher .number .btn{
+    font-size: 14px;
+    width: 100%;
+  }
+
+  #fh5co-product .voucher .number .form-group input{
+    font-size: 11px;
+    width: 100%;
+  }
+
+  #fh5co-product .product2 .price h2{
+    font-size: 15px;
+  }
+
+  #fh5co-product .potongan p{
+    font-size: 13px;
+  }
+
+  #fh5co-product .voucher p{
+    font-size: 15px;
+  }
+
+}
+
+#fh5co-product .voucher .number .btn:hover, #fh5co-product .voucher .number .btn:focus, #fh5co-product .voucher .number .btn:active {
+  background: rgba(191, 139, 22, .9) !important;
+  border-color: rgba(191, 139, 22, .9) !important;
+}
+
+/*PENUTUP*/
+
+
+
 
 
 @media screen and (max-width: 768px) {
@@ -2017,6 +2657,7 @@ background-image: url(../../storage/images/search.png);
   padding: 40px 65px 10px 65px;
   text-align: center;
 
+
 }
 
 @media screen and (max-width: 1024px) {
@@ -2140,10 +2781,16 @@ background-image: url(../../storage/images/search.png);
 
 /*style Pendaftaran*/
 
+
+/*EDIT 30 AGUSTUS*/
 #fh5co-hero .flexslider .slider-text > .slider-text-inner .form-daftar {
   padding-bottom: 0;
   margin-top: -5%;
+  width: 88%;
+  margin-left: 7%;
 }
+
+/*PENUTUP*/
 
 #fh5co-hero .flexslider .slider-text > .slider-text-inner .form-daftar form {
   padding-left: 6%;
@@ -2429,12 +3076,21 @@ background-image: url(../../storage/images/search.png);
 
 }
 
+/*EDIT 30 AGUSTUS*/
+
 @media screen and (max-width: 330px) {
   .fh5co-tabs .fh5co-tab-content-wrap .tab-content .price {
       position: relative;
       margin-top: 214.4%;
   }
+
+    #fh5co-product .tiga .product{
+      margin-top: 30%;
+    }
 }
+
+/*PENUTUP*/
+
 
 
 /* GALLERY */
@@ -2515,3 +3171,223 @@ background-image: url(../../storage/images/search.png);
   padding-top: 45%;
 
 }
+
+
+/*EDIT 30 AGUSTUS*/
+
+/*style detail foto*/
+#fh5co-product .fh5co-tabs .komentar .fh5co-tab-content h2{
+  font-weight: bold;
+}
+
+
+#fh5co-product .fh5co-tabs .komentar .fh5co-tab-content p{
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#fh5co-product .fh5co-tabs .fh5co-tab-content .option_ukuran {
+  width: 50%;
+  font-size: 14px;
+}
+
+
+#fh5co-product .fh5co-tabs .fh5co-tab-content .option_ukuran .btn {
+  font-size: 16px;
+  background-color: #bf8b16;
+  color: white;
+  padding: 20px 0 20px 0;
+  display: inline-block;
+  margin-top: 3%;
+  border-radius: 10px;
+}
+
+#fh5co-product .komentar {
+  margin-top: -20%;
+    margin-bottom:10%;
+    display: block;
+
+}
+
+
+
+#fh5co-product .komentar .komentar_konten{
+  border-bottom: 2px solid #a8a8a8;
+  padding-bottom: 2%;
+  margin-left: 5%;
+  margin-top: 2%;
+
+}
+#fh5co-product .komentar .komentar_konten img{
+  width: 70%;
+}
+
+
+#fh5co-product .komentar .komentar_konten .ket_waktu{
+  font-size: 12px;
+  margin-left: -5.5%;
+  padding-top: 2%;
+}
+
+#fh5co-product .komentar .tulis_komentar .komentar_konten {
+  border-bottom: unset;
+}
+
+
+#fh5co-product .komentar .tulis_komentar .form-group .form-control {
+  height: 80px;
+}
+
+#fh5co-product .komentar .tulis_komentar .form-group .button_send img{
+  width: 5%;
+  position: relative;
+  float: right;
+  margin-right: 4%;
+  margin-top: -8%;
+}
+
+#fh5co-product .komentar .komentar_konten .nama_user{
+  font-weight: bold;
+  color: black;
+}
+
+
+@media screen and (max-width: 380px){
+  #fh5co-product .komentar .tulis_komentar .form-group .button_send img{
+    width: 10%;
+    margin-right: 8%;
+    margin-top: -10%;
+  }
+
+  #fh5co-product .komentar .tulis_komentar img{
+    margin-bottom: 10%;
+
+  }
+}
+
+@media screen and (max-width: 480px){
+
+  #fh5co-product .komentar .tulis_komentar img{
+    margin-bottom: 10%;
+  }
+
+  #fh5co-product .komentar .tulis_komentar .form-group .button_send img{
+    width: 8%;
+    margin-right: 8%;
+    margin-top: -10%;
+  }
+}
+
+@media screen and (width: 768px){
+
+  #fh5co-product .komentar .tulis_komentar img{
+    margin-bottom: 10%;
+    width: 130%;
+
+  }
+
+  #fh5co-product .komentar .tulis_komentar .form-group .button_send img{
+     width: 8%;
+    margin-right: 8%;
+    margin-top: -10%;
+  }
+
+}
+
+
+
+
+/*style upload foto*/
+
+#fh5co-hero .upload_foto .slides .slider-text-inner .desc{
+  background-color: #bf8b16;
+  border-radius: unset;
+  width: 75%;
+
+
+
+}
+
+#fh5co-hero .upload_foto .slides .slider-text-inner .desc h2{
+   color: white;
+   font-size: 50px;
+   padding: 50px 0 50px 0;
+   font-weight: bold;
+   text-align: justify;
+
+}
+
+@media screen and (max-width: 1024px){
+  #fh5co-hero .upload_foto .slides .slider-text-inner .desc h2{
+    font-size: 60px;
+  }
+
+  #fh5co-hero .upload_foto .slides .slider-text-inner .desc{
+    width: 100%;
+  }
+
+}
+
+
+@media screen and (max-width: 768px){
+  #fh5co-hero .upload_foto .slides .slider-text-inner .desc h2{
+    font-size: 60px;
+  }
+
+  #fh5co-hero .upload_foto .slides .slider-text-inner .desc{
+    width: 70%;
+  }
+
+}
+
+@media screen and (max-width: 380px){
+  #fh5co-hero .upload_foto .slides .slider-text-inner .desc h2{
+    font-size: 40px;
+  }
+
+  #fh5co-hero .upload_foto .slides .slider-text-inner .desc{
+    width: 70%;
+  }
+
+}
+
+
+@media screen and (max-width: 480px){
+  #fh5co-hero .upload_foto .slides .slider-text-inner .desc h2{
+    font-size: 40px;
+  }
+
+  #fh5co-hero .upload_foto .slides .slider-text-inner .desc{
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 330px){
+  #fh5co-hero .upload_foto .slides .slider-text-inner .desc h2{
+    font-size: 35px;
+  }
+
+  #fh5co-hero .upload_foto .slides .slider-text-inner .desc{
+    width: 90%;
+  }
+}
+.upload_foto .text {
+  margin-top: 10%;
+}
+
+.upload_foto {
+  margin-bottom: 10%;
+}
+
+.upload_foto .form_upload .form-group .upload{
+  font-size: 15px;
+  width: 70%;
+}
+
+.upload_foto .form_upload .form-group .btn {
+  font-size: 18px;
+  width: 40%;
+}
+
+
+/*PENUTUP*/

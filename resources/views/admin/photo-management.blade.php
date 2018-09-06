@@ -12,7 +12,7 @@
                         <h4 class="card-title">Tambah Photo</h4>
                     </div>
                     <div class="card-body">
-                      <form class="" action="/photo/store" method="post" enctype="multipart/form-data">
+                      <form class="" action="/photo/store" method="post" enctype="multipart/form-data" accept="image/*">
                         {{ csrf_field() }}
 
                         <input type="text" name="name" value="" class="form-control" placeholder="Judul" style="margin-bottom:2%;">

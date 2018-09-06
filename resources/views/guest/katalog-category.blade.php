@@ -1,18 +1,6 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
+@extends('guest.master')
 
-	@include('guest.includes.head')
-	@include('guest.includes.head-index')
-
-	</head>
-	<body>
-
-	<div class="fh5co-loader"></div>
-
-	<div id="page">
-
-	@include('guest.layouts.navbar')
+@section('content')
 
 	@include('guest.layouts.search-form')
 
@@ -37,14 +25,14 @@
 							<div class="inner">
 								<p>
 									<a href="" class="icon"><i class="icon-shopping-cart"></i></a>
-									<a href="single.html" class="icon"><i class="icon-eye"></i></a>
+									<a href="/detail/{{$key1->slug}}" class="icon"><i class="icon-eye"></i></a>
 								</p>
 							</div>
 						</div>
 
 						<div class="col-md-12 product2">
 								<div class="desc col-md-10 col-sm-9 col-xs-9">
-									<h3 class="col-md-12 col-sm-12 col-xs-12"><a href="single.html">{{$key1->nama}}</a></h3>
+									<h3 class="col-md-12 col-sm-12 col-xs-12"><a href="/detail/{{$key1->slug}}">{{$key1->nama}}</a></h3>
 									<span class="price col-md-12 col-sm-12 col-xs-12"><p>Karya {{$key1->user->username}}</p></span>
 								</div>
 								<!-- <div class="col-md-2 col-sm-2 col-xs-2 like" >
@@ -58,19 +46,8 @@
 			</div>
 
 			@include('guest.layouts.content-foto-lainnya')
-			
+
 		</div>
 	</div>
 
-	@include('guest.layouts.footer')
-
-	</div>
-
-	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-	</div>
-
-	@include('guest.includes.script-index')
-
-	</body>
-</html>
+@endsection

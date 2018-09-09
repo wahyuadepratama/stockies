@@ -18,6 +18,8 @@ class CreateCartsTable extends Migration
           $table->integer('id_photo')->unsigned();
           $table->integer('id_transaksi')->unsigned();
           $table->integer('price');
+          $table->string('ukuran');
+          $table->string('path');
           $table->timestamps();
 
           $table->foreign('id_photo')->references('id')->on('photos')->onDelete('cascade')->onUpdate('cascade');

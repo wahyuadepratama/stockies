@@ -4,22 +4,22 @@
   Stockies
 </title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Free HTML5 Website Template by gettemplates.co" />
-<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-<meta name="author" content="gettemplates.co" />
+<meta name="description" content="Stockies adalah platform stock foto kearifan lokal terbesar yang ada di Indonesia" />
+<meta name="keywords" content="stockies, kearifan lokal, stock foto, foto indonesia, stockies indonesia, indonesia, video indonesia, cerita foto, foto gratis, free photo" />
+<meta name="author" content="stockies team" />
 
 <link rel="icon" type="image/png" href="{{ asset('storage/icon/favicon2.png') }}">
 
 <!--
 //////////////////////////////////////////////////////
 
-FREE HTML5 TEMPLATE
-DESIGNED & DEVELOPED by FreeHTML5.co
+Selamat datang di Stockies. Stockies adalah platform stock foto
+kearifan lokal terbesar yang ada di Indonesia. Temukan berbagai foto
+dan video yang kamu butuhkan disini.
 
-Website: 		http://freehtml5.co/
-Email: 			info@freehtml5.co
-Twitter: 		http://twitter.com/fh5co
-Facebook: 		https://www.facebook.com/fh5co
+Website: 		http://stockies.id
+Email: 			official@stockies.id
+Instagram:  @stockies_id
 
 //////////////////////////////////////////////////////
  -->

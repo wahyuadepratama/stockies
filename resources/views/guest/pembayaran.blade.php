@@ -3,12 +3,18 @@
 @section('content')
 
   <!-- content here -->
-
+  @if(Cart::content()->isEmpty())
+    <div id="fh5co-product">
+      <div class="container keranjang">
+        <h3>Keranjang Belanja Kamu Kosong</h3>
+      </div>
+    </div>
+  @else
   <div id="fh5co-about">
 		<div class="container">
 			<div class="about-content">
 
-					<div class="col-md-12">
+				<div class="col-md-12">
 						<div class="pembayaran">
 
 								<h3>Pembayaran</h3>
@@ -42,29 +48,29 @@
 										<p>File foto yang anda pesan akan dikirimkan ke email berikut : </p>
 
 											<form action="/pembayaran/save" method="post">
+                        {{ csrf_field() }}
 												<div class="row form-group">
 													<div class="col-md-7">
-
+                            @if ($errors->has('email'))
+                                <div class="text-danger">
+                                    <strong><small>{{ $errors->first('email') }}</small></strong>
+                                </div>
+                            @endif
 														<input type="text" id="email" class="form-control" placeholder="Masukkan alamat email" name="email">
 													</div>
 													<div class="col-md-7">
-
-														<input type="text" id="email" class="form-control" placeholder="Masukkan ulang alamat email" name="email_confirmation">
+														<input type="text" id="email_confirmation" class="form-control" placeholder="Masukkan ulang alamat email" name="email_confirmation">
 													</div>
 												</div>
 
-											</form>
-
-											<div class="form-group">
-                        <form class="" action="/pembayaran/save" method="post">
-                          <input type="submit" value="Konfirmasi" class="btn btn-primary">
-                        </form>
-											</div>
-
+  											<div class="form-group">
+                            <input type="submit" value="Konfirmasi" class="btn btn-primary">
+  											</div>
+                      </form>
 								</div>
 
-								<div class="transfer col-md-4">
 
+								<div class="transfer col-md-4">
 									<div class="col-md-12">
 									<h4>Pembayaran</h4>
 										<p>Lakukan pembayaran melalui bank transfer ke salah satu rekening di bawah ini : </p>
@@ -114,5 +120,6 @@
 				</div>
 			</div>
 		</div>
+    @endif
 
 @endsection

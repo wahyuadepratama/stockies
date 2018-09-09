@@ -15,8 +15,13 @@
                     <div class="card-body">
                       <form action="/admin/keyword/store" method="post">
                         {{csrf_field()}}
-                        <input type="text" name="keyword" class="form-control">
-                        <input type="submit" name="" value="Tambah" class="form-control btn btn-info btn-fill pull-right" style="margin-top:2%">
+                        <input type="text" name="nama" class="form-control">
+                        @if ($errors->has('nama'))
+                            <div class="text-danger">
+                                <strong><small>{{ $errors->first('nama') }}</small></strong>
+                            </div>
+                        @endif
+                        <input type="submit" value="Tambah" class="form-control btn btn-info btn-fill pull-right" style="margin-top:2%">
                       </form>
                       <div class="card-body table-full-width table-responsive">
                           <table class="table table-hover table-striped">
@@ -45,7 +50,8 @@
                                                       </div>
                                                   </div>
                                                   <div class="modal-body text-center">
-                                                      <p>Apakah anda yakin item ini akan dihapus?</p>
+                                                      <p>Apakah anda yakin akan menghapus keyword ini?</p>
+                                                      <p>Semua data yang menggunakan keyword ini juga akan ikut terhapus!</p>
                                                   </div>
                                                   <div class="modal-footer">
                                                     <form action="/admin/keyword/delete/{{$data1->id}}" method="post">
@@ -78,7 +84,7 @@
                     <div class="card-body">
                       <form action="/admin/kategori/store" method="post">
                         {{csrf_field()}}
-                        <input type="text" name="kategori" class="form-control">
+                        <input type="text" name="kategori" class="form-control" required>
                         <input type="submit" name="" value="Tambah" class="form-control btn btn-info btn-fill pull-right" style="margin-top:2%">
                       </form>
                       <div class="card-body table-full-width table-responsive">
@@ -108,7 +114,8 @@
                                                       </div>
                                                   </div>
                                                   <div class="modal-body text-center">
-                                                      <p>Apakah anda yakin item ini akan dihapus?</p>
+                                                      <p>Apakah anda yakin akan menghapus kategori ini?</p>
+                                                      <p>Semua data yang menggunakan kategori ini juga akan ikut terhapus!</p>
                                                   </div>
                                                   <div class="modal-footer">
                                                     <form action="/admin/kategori/delete/{{$data->id}}" method="post">

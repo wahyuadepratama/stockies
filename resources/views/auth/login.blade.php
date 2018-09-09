@@ -17,7 +17,7 @@
 	<aside id="fh5co-hero" class="">
 		<div class="flexslider">
 			<ul class="slides">
-		   	<li style="background-image: url({{asset('storage/images/instagram-com-jamie_fenn-1.png')}});">
+		   	<li style="background-image: url({{asset('storage/landing/login.jpg')}});">
 		   		<div class="overlay-gradient"></div>
 		   		<div class="container">
 
@@ -33,12 +33,7 @@
 										<div class="row form-group">
 											<div class="col-md-12">
 												<!-- <label for="fname">Username</label> -->
-												<input type="text" id="fname" class="form-control" placeholder="Username or Email" name="identity" value="{{ old('identity') }}" required autofocus>
-                        @if ($errors->has('identity'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('identity') }}</strong>
-                            </span>
-                        @endif
+												<input type="text" id="username" class="form-control" placeholder="Username or Email" name="identity" value="{{ old('identity') }}" required autofocus>
 											</div>
 										</div>
 
@@ -46,11 +41,11 @@
 											<div class="col-md-12">
 												<!-- <label for="password">Password</label> -->
 												<input id="password" type="password" class="form-control" name="password" placeholder="Password" required>
-                        @if ($errors->has('password'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('password') }}</strong>
-                            </span>
-                        @endif
+												@if ($errors->has('username'))
+			                      <div class="text-danger">
+			                          <strong><small>{{ $errors->first('username') }}</small></strong>
+			                      </div>
+			                  @endif
 											</div>
 										</div>
 

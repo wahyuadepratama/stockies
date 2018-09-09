@@ -91,7 +91,22 @@ h1, h2, h3, h4, h5, h6, figure {
   z-index: 999;
   width: 100%;
   background-image: url(../../storage/images/navbar.png);
+
 }
+
+/*  EDIT 5 SEPTEMBER*/
+
+  .fh5co-nav .nav ul{
+    margin-left: -4%;
+}
+
+  .fh5co-nav .has-dropdown .cart img{
+      width: 50px;
+  }
+
+
+
+/*PENUTUP*/
 
 /*EDIT 30 AGUSTUS*/
 @media screen and (max-width: 1024px) {
@@ -256,8 +271,10 @@ h1, h2, h3, h4, h5, h6, figure {
   position: relative;
 }
 .fh5co-nav ul li.has-dropdown .dropdown {
-  /*EDIT 30 AGUSTUS*/
-   width: 200px;
+  /*EDIT 5 SEPTEMBER*/
+   width: 500px;
+   margin:0px 0 60px 0;
+
    /*PENUTUP*/
   -webkit-box-shadow: 0px 14px 33px -9px rgba(255, 255, 255, 0.75);
   -moz-box-shadow: 0px 14px 33px -9px rgba(255, 255, 255, 0.75);
@@ -267,7 +284,11 @@ h1, h2, h3, h4, h5, h6, figure {
   opacity: 0;
   position: absolute;
   top: 40px;
-  left: 0;
+
+  /*EDIT 5 SEPTEMBER*/
+  right: 0;
+  /*PENUTUP*/
+
   text-align: left;
   /*EDIT 30 AGUSTUS*/
   background: white;
@@ -306,14 +327,27 @@ h1, h2, h3, h4, h5, h6, figure {
 .fh5co-nav ul li.has-dropdown .dropdown li a {
   padding: 2px 0;
   display: block;
-  color: #999999;
+  /*EDIT 5 SEPTEMBER*/
+  color: black;
+  /*PENUTUP*/
   line-height: 1.2;
   text-transform: none;
   font-size: 15px;
 }
-.fh5co-nav ul li.has-dropdown .dropdown li a:hover {
-  color: #fff;
+
+/*EDIT 5 SEPTEMBER*/
+.fh5co-nav ul li.has-dropdown .dropdown .closebtn:hover {
+  color: #bf8b16;
 }
+
+
+.fh5co-nav ul li.has-dropdown .dropdown li a:hover {
+
+  color: ;
+
+}
+
+/*PENUTUP*/
 .fh5co-nav ul li.has-dropdown:hover a, .fh5co-nav ul li.has-dropdown:focus a {
   color: #000;
 }
@@ -543,7 +577,7 @@ border-top-right-radius: 20px;
   }
 }
 
-/*EDIT 20 AGUSTUS*/
+/*EDIT 30 AGUSTUS*/
 .about-content {
   margin-bottom: 0em;
   margin-top: 2em;
@@ -583,13 +617,15 @@ border-top-right-radius: 20px;
   margin-bottom: 6%;
 }
 
-
+/*EDIT 5 SEPTEMBER*/
 .about-content .desc a {
-  color: blue;
+  color: #828282;
   font-weight: bold;
   border:12px solid white;
 
 }
+
+/*PENUTUP*/
 
 /*style about*/
 
@@ -834,13 +870,13 @@ border-top-right-radius: 20px;
 
 
 
-
+/*EDIT 1 SEPTEMBER*/
 .fh5co-staff {
-  text-align: center;
+  text-align: left;
   margin-bottom: 30px;
 }
 .fh5co-staff img {
-  width: 170px;
+  width: 200px;
   margin-bottom: 20px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -853,14 +889,19 @@ border-top-right-radius: 20px;
 }
 .fh5co-staff p {
   margin-bottom: 30px;
+
 }
-.fh5co-staff .role {
-  color: #bfbfbf;
+.fh5co-staff .email {
+  color: black;
   margin-bottom: 30px;
   font-weight: normal;
   display: block;
+  margin-left: 5%;
+
 }
 
+
+/*PENUTUP*/
 .fh5co-social-icons {
   margin: 0;
   padding: 0;
@@ -3387,6 +3428,256 @@ background-image: url(../../storage/images/search.png);
 .upload_foto .form_upload .form-group .btn {
   font-size: 18px;
   width: 40%;
+}
+
+
+/*PENUTUP*/
+
+
+
+/*EDIT 1 SEPTEMBER*/
+
+    @media screen and (max-width: 380px){
+      .about-content .konfirmasi .upload_bukti .btn {
+        width: 70%;
+
+}
+
+}
+
+
+@media screen and (max-width: 480px){
+      .about-content .konfirmasi .upload_bukti .btn {
+        width: 65%;
+        font-size: 16px;
+
+}
+}
+@media screen and (max-width: 330px){
+      .about-content .konfirmasi .upload_bukti .btn {
+        width: 70%;
+        font-size: 14px;
+
+}
+}
+/*style dashboard*/
+
+
+#dashboard{
+  margin-top: -10%
+}
+
+#dashboard .dashboard_title {
+  margin-bottom: 2%;
+}
+
+#fh5co-product .unduh {
+  margin-top: 1%;
+}
+
+#dashboard .dashboard_title .icon3 img{
+  width: 24px;
+}
+
+#dashboard .dashboard_title h2{
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#dashboard .button {
+  background-color: white;
+  padding: 10px 50px 10px 50px;
+  font-size: 25px;
+  font-weight: bold;
+  margin-top:10px;
+  margin-left:-20%;
+
+}
+
+.unduh .dashboard_title  {
+  margin-top: -10%;
+}
+
+#fh5co-about .icon_dashboard{
+  margin-left: -8%;
+
+}
+
+
+#fh5co-about .icon_dashboard img{
+  width: 14px;
+}
+
+#fh5co-about .icon_dashboard .ket {
+  margin-top: -8%;
+}
+
+
+.dashboard_alert {
+   margin-left: -10%;
+   width: 76%;
+}
+
+.dashboard_alert h3{
+  display: inline-block;
+  color: #bf8b16;
+  font-weight: bold;
+  border-bottom: 3px solid #bf8b16;
+  padding-bottom: 1%;
+}
+
+.alert {
+    padding: 15px;
+    background-color: #f44336;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+
+}
+
+.dashboard_alert .notifikasi .alert{
+    padding-bottom: 2%;
+  }
+
+.dashboard_alert .notifikasi .icon_text img{
+  width: 22px;
+
+}
+
+.dashboard_alert .notifikasi h4{
+  font-size: 18px;
+  font-weight: bold;
+
+}
+
+.dashboard_alert .notifikasi .text {
+  margin-left: -4%;
+}
+
+.dashboard_alert .grey {
+  background-color:  #B8B8B8;
+  color: black;
+}
+
+.dashboard_alert .grey .closebtn {
+  color: black;
+}
+
+.dashboard_alert .grey .closebtn:hover {
+  color: white;
+}
+
+.dashboard_alert .orange {
+  background-color: #bf8b16;
+  color: white;
+}
+
+.dashboard_alert .orange .closebtn{
+  color: white;
+}
+
+.dashboard_alert .orange .closebtn:hover{
+  color: black;
+}
+
+.closebtn {
+    margin-left: 15px;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+@media screen and (max-width: 780px){
+    .dashboard_akun{
+      margin-top: 8%;
+    }
+
+    .fh5co-staff img {
+    width: 50%;
+  }
+
+  .fh5co-staff h3 {
+    font-size: 16px;
+  }
+
+  .fh5co-staff .email {
+    font-size: 12px;
+
+  }
+
+  .icon_dashboard p{
+    font-size: 14px;
+  }
+
+  .dashboard_alert .notifikasi .text {
+    margin-left: 2%;
+  }
+
+  #dashboard .btn{
+    margin-left: 35%;
+  }
+}
+
+
+@media screen and (max-width: 480px){
+  #dashboard .button{
+    margin: 0 auto;
+  }
+
+  .dashboard_akun {
+    margin-left: 5%;
+  }
+
+  #dashboard .btn{
+    margin-left: 12%;
+  }
+
+}
+
+
+
+
+@media screen and (max-width: 330px){
+
+  #dashboard .btn{
+    margin-left: -1%;
+  }
+
+}
+
+
+
+/*PENUTUP*/
+
+
+/*EDIT 5 SEPTEMBER*/
+
+.fh5co-nav .checkout {
+background-color:#bf8b16;
+color: white;
+margin-top: 7%;
+
+}
+
+
+.fh5co-nav ul li.has-dropdown .login{
+  width: 230px;
+
+}
+
+
+.fh5co-nav ul li.has-dropdown .login li {
+  margin-top: 2%;
+  text-align: center;
+}
+
+.fh5co-nav ul li.has-dropdown .login button {
+  margin-top: -15%;
+  margin-bottom: -8%;
 }
 
 

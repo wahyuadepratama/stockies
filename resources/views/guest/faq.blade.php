@@ -26,7 +26,7 @@
               <p>Untuk dapat melakukan transaksi, anda harus membuat akun Stockies terlebih dahulu. Anda dapat membuat akun tersebut melalui link ini :
               <br>
 
-              <a href="http://stockies.id/daftar">http://stockies.id/daftar</a>
+              <a href="http://stockies.id/register">http://stockies.id/register</a>
 
               <br>
 
@@ -40,7 +40,7 @@
               <p>Foto anda nantinya akan terpampang di salah satu halaman Stockies. Jika foto anda banyak disukai oleh para pengunjung Stockies, maka foto anda akan terpampang di halaman utama kami dan berada pada bagian “Foto Terbaik Hari Ini”.</p>
 
               <h4>Bagaimana jika saya ingin bertanya lebih lanjut lagi ?</h4>
-              <p>Anda dapat menghubungi kami di stockiesphoto@gmail.com dan kami juga menyediakan informasi-informasi di media sosial kami @stockies_id (Instagram). </p>
+              <p>Anda dapat menghubungi kami di official@stockies.id dan kami juga menyediakan informasi-informasi di media sosial kami @stockies_id (Instagram). </p>
             </div>
 
           </div>

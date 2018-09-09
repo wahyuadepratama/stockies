@@ -15,9 +15,9 @@ class UserTableSeeder extends Seeder
       DB::table('users')->insert([
         [
           'name' => "Administrator",
-          'username' => "admin",
-          'email' => 'admin@wap.com',
-          'password' => '$2y$10$.7hqO3OKindL4AA.nxVTb.2QJGo/mpPBNjDc2Uc800T0HTmrl9wGa',
+          'username' => "administrator",
+          'email' => 'official@stockies.id',
+          'password' => bcrypt('sementarasaja123'),
           'role_id' => 1,
           'remember_token' => str_random(40),
           'created_at'=> Carbon::now(),

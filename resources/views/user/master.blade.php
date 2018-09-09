@@ -1,8 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		@include('guest.includes.head')
-		@include('guest.includes.head-index')
+		@include('user.includes.head')
 	</head>
 	<body onload="message()">
 
@@ -14,13 +13,13 @@
     @yield('content')
 
 
-  @include('guest.layouts.footer')
+  @include('user.layouts.footer')
   </div>
   <div class="gototop js-top">
     <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
   </div>
 
-  @include('guest.includes.script-index')
+  @include('user.includes.script')
 
   </body>
 </html>

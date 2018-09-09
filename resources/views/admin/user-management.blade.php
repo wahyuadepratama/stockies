@@ -14,7 +14,10 @@
                     </div>
                     <div class="card-body">
                       <div class="card-body table-full-width table-responsive">
-                          <table class="table table-hover table-striped">
+
+                          @include('admin.includes.js-datatable')
+
+                          <table class="table table-hover table-striped" id="dataTable">
                               <thead>
                                   <th>Id</th>
                                   <th>Name</th>
@@ -92,6 +95,13 @@
                                 @endforeach
                               </tbody>
                           </table>
+
+                          <script type="text/javascript">
+                            $(document).ready( function () {
+                              $('#dataTable').DataTable();
+                            } );
+                          </script>
+
                       </div>
                     </div>
                 </div>

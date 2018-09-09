@@ -60,5 +60,7 @@ class Kernel extends HttpKernel
         // cuztome disini
         'admin' => \App\Http\Middleware\CheckAdmin::class,
         'user' => \App\Http\Middleware\CheckUser::class,
+        'waiting' => \App\Http\Middleware\CheckConfirmation::class,
+        'paid' => \App\Http\Middleware\CheckPaid::class,
     ];
 }

@@ -21,6 +21,9 @@
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{URL::asset('admin-panel/assets/js/demo.js')}}"></script>
 
+<!-- untuk datatable -->
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" charset="utf-8"></script>
+
 <script type="text/javascript">
 
   demo.initDashboardPageCharts();
@@ -29,7 +32,8 @@
     @if($message = Session::get('success'))
       demo.showNotification('top','right','{{ $message }}');
     @else
-      demo.showNotification('top','right','Welcome Admin');
+      // demo.showNotification('top','right','Welcome Admin');
+      return false;
     @endif
   }
 </script>

@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<div class="container">
+	<div class="container" style="margin-top:7%">
 	<header id="image" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url({{asset('storage/photo/'.$photo->large)}});">
 		<div class="overlay"></div>
 
@@ -83,9 +83,9 @@
 										<div class="col-md-12 col-sm-12 col-xs-12">
 											<select name="data" onchange="change(this.value)" class="option_ukuran form-control koption">
 												<option value="0">Pilih ukuran</option>
-												<option value="{{ $photo->price_small }}|{{ $photo->small }}|{{ $photo->thumbnail }}" >S (500x334px and Price Rp.{{$photo->price_small}})</option>
-												<option value="{{ $photo->price_medium }}|{{ $photo->medium }}|{{ $photo->thumbnail }}">M (1000x667px and Price Rp.{{$photo->price_medium}})</option>
-												<option value="{{ $photo->price_large }}|{{ $photo->large }}|{{ $photo->thumbnail }}">L (6000x4000px and Price Rp.{{$photo->price_large}})</option>
+												<option value="{{ $photo->price_small }}|{{ $photo->small }}|{{ $photo->thumbnail }}|small" >S (500x334px and Price Rp.{{$photo->price_small}})</option>
+												<option value="{{ $photo->price_medium }}|{{ $photo->medium }}|{{ $photo->thumbnail }}|medium">M (1000x667px and Price Rp.{{$photo->price_medium}})</option>
+												<option value="{{ $photo->price_large }}|{{ $photo->large }}|{{ $photo->thumbnail }}|large">L (6000x4000px and Price Rp.{{$photo->price_large}})</option>
 											</select>
 										</div>
 
@@ -101,13 +101,13 @@
 
 												<script type="text/javascript">
 													function change($value){
-														if($value == "{{ $photo->price_small }}|{{ $photo->small }}|{{ $photo->thumbnail }}"){
+														if($value == "{{ $photo->price_small }}|{{ $photo->small }}|{{ $photo->thumbnail }}|small"){
 															return document.getElementById("image").style.backgroundImage = "url({{asset('storage/photo/')}}"+"/{{$photo->small}})";
 														}
-														if($value == "{{ $photo->price_medium }}|{{ $photo->medium }}|{{ $photo->thumbnail }}"){
+														if($value == "{{ $photo->price_medium }}|{{ $photo->medium }}|{{ $photo->thumbnail }}|medium"){
 															return document.getElementById("image").style.backgroundImage = "url({{asset('storage/photo/')}}"+"/{{$photo->medium}})";
 														}
-														if($value == "{{ $photo->price_large }}|{{ $photo->large }}|{{ $photo->thumbnail }}"){
+														if($value == "{{ $photo->price_large }}|{{ $photo->large }}|{{ $photo->thumbnail }}|large"){
 															return document.getElementById("image").style.backgroundImage = "url({{asset('storage/photo/')}}"+"/{{$photo->large}})";
 														}
 													}
@@ -153,7 +153,7 @@
 											</div>
 
 											<div class="col-md-10">
-												<div class="nama_user ">{{$key2->user->username}}</div>
+												<div class="nama_user ">{{$key2->user->name}}</div>
 												<div class="isi_komentar"> {{$key2->body}} </div>
 												<div class="ket_waktu col-md-12 col-sm-12 col-xs-12">
 

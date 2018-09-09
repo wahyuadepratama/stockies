@@ -131,7 +131,7 @@ class PhotoController extends Controller
               'created_at' => Carbon::now()->setTimezone('Asia/Jakarta')
             ]);
 
-            $id = Photo::orderBy('id','desc')->first();
+            $id = Photo::orderBy('id','desc')->firstOrFail();
             foreach($request['keyword'] as $isi){
               KeywordPhoto::create([
                 'id_keyword' => $isi,
@@ -139,7 +139,12 @@ class PhotoController extends Controller
               ]);
             }
 
-            return back()->with('success','Foto Berhasil Ditambahkan');
+          return redirect('/home')->with('success','Foto Berhasil Ditambahkan');
+
+        }else{
+
+          return back()->with('error','Pilih Foto Terlebih Dahulu!');
+
         }
     }
 
@@ -172,7 +177,7 @@ class PhotoController extends Controller
     public function validator(array $data)
     {
         return Validator::make($data, [
-            'image' => 'required|mimes:jpeg,jpg,png|max:1000',
+            'image' => 'required|mimes:jpeg,jpg,png|max:10240',
             'name'  => 'required|string',
             'category' => 'required',
             'price_small' => 'required',
@@ -203,7 +208,7 @@ class PhotoController extends Controller
     public function showCategory($id)
     {
       $one = Photo::active()->with('user')->where('id_category',$id)->take(6)->get();
-      $two = Category::find($id);
+      $two = Category::findOrFail($id);
 
       return view('guest.katalog-category')->with('detail', $one)->with('category', $two);
     }
@@ -220,5 +225,14 @@ class PhotoController extends Controller
                 ->get();
 
       return view('guest.katalog-keyword')->with('detail',$one)->with('keyword',$request->search);
+    }
+
+    public function indexUpload()
+    {
+      $category = Category::all();
+      $keyword = Keyword::all();
+
+      return view('user.upload')->with('category',$category)
+                                ->with('keyword',$keyword);
     }
 }

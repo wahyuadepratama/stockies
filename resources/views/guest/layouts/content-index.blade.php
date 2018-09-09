@@ -1,7 +1,7 @@
 <aside id="fh5co-hero" class="">
   <div class="flexslider">
     <ul class="slides">
-      <li style="background-image: URL({{asset('storage/images/omer-rana-516270-unsplash.png')}});">
+      <li style="background-image: URL({{asset('storage/landing/1.jpg')}});">
         <div class="overlay-gradient"></div>
         <div class="container">
           <div class="col-md-6 col-md-offset-3 col-md-pull-3 js-fullheight slider-text">
@@ -9,44 +9,40 @@
               <div class="desc">
                 <span class="price"></span>
                 <h2>Temukan ratusan stock foto dan video disini.</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. </p>
+                <p>Selamat datang di Stockies. Stockies adalah platform stock foto
+                  kearifan lokal terbesar yang ada di Indonesia. Temukan berbagai foto
+                  dan video yang kamu butuhkan disini.</p>
                 <!-- <p><a href="single.html" class="btn btn-primary btn-outline btn-lg">Purchase Now</a></p> -->
               </div>
             </div>
           </div>
         </div>
       </li>
-      <li style="background-image: URL({{asset('storage/images/joshua-newton-1.png')}});">
+      <li style="background-image: URL({{asset('storage/landing/2.jpg')}});">
         <div class="container">
           <div class="col-md-6 col-md-offset-3 col-md-pull-3 js-fullheight slider-text">
             <div class="slider-text-inner">
               <div class="desc">
                 <span class="price"></span>
-                <h2>Temukan ratusan stock foto dan video disini.</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. </p>
+                <h2>Temukan berbagai foto dan video mengenai Indonesia.</h2>
+                <p>Foto dapat mengatakan ribuan kalimat. Terdapat berbagai macam sudut pandang pengambilan momen
+                  yang dapat diceritakan lewat gambar. Temukan ceritamu tentang Indonesia disini. </p>
                 <!-- <p><a href="single.html" class="btn btn-primary btn-outline btn-lg">Purchase Now</a></p> -->
               </div>
             </div>
           </div>
         </div>
       </li>
-      <li style="background-image: URL({{asset('storage/images/instagram-com-jamie_fenn-1.png')}});">
+      <li style="background-image: URL({{asset('storage/landing/3.jpg')}});">
         <div class="container">
           <div class="col-md-6 col-md-offset-3 col-md-pull-3 js-fullheight slider-text">
             <div class="slider-text-inner">
               <div class="desc">
                 <span class="price"></span>
-                <h2>Temukan ratusan stock foto dan video disini.</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. </p>
+                <h2>Stockies. Platform stock foto Indonesia terbesar.</h2>
+                <p>Selamat datang di Stockies. Stockies adalah platform stock foto
+                  kearifan lokal terbesar yang ada di Indonesia. Temukan berbagai foto
+                  dan video yang kamu butuhkan disini.</p>
                 <!-- <p><a href="single.html" class="btn btn-primary btn-outline btn-lg">Purchase Now</a></p> -->
               </div>
             </div>

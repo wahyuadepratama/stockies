@@ -47,6 +47,24 @@
                           <p>Photo Management</p>
                       </a>
                   </li>
+                  <li class="nav-item {{ Request::is('admin/transaction') ? 'active' : '' }}">
+                      <a class="nav-link" href="/admin/transaction">
+                          <i class="nc-icon nc-paper-2"></i>
+                          <p>Transaction</p>
+                      </a>
+                  </li>
+                  <li class="nav-item {{ Request::is('admin/message') ? 'active' : '' }}">
+                      <a class="nav-link" href="/admin/message">
+                          <i class="nc-icon nc-email-83"></i>
+                          <p>Messages</p>
+                      </a>
+                  </li>
+                  <li class="nav-item {{ Request::is('admin/comment') ? 'active' : '' }}">
+                      <a class="nav-link" href="/admin/comment">
+                          <i class="nc-icon nc-ruler-pencil"></i>
+                          <p>Comments</p>
+                      </a>
+                  </li>
               </ul>
           </div>
       </div>

@@ -14,7 +14,7 @@
 	<aside id="fh5co-hero" class="">
 		<div class="flexslider">
 			<ul class="slides">
-		   	<li class="bg-daftar" style="background-image: url({{asset('storage/images/joshua-newton-1.png')}}); ">
+		   	<li class="bg-daftar" style="background-image: url({{asset('storage/landing/register.jpg')}}); ">
 		   		<div class="container">
 		   			<div class="col-md-12 col-sm-4 col-md-offset-3 col-md-pull-3 js-fullheight slider-text" >
 		   				<div class="slider-text-inner">
@@ -26,22 +26,42 @@
 										<div class="row form-group col-md-6">
 											<div class="col-md-12 space">
 												<!-- <label for="namaLengkap">Nama Lengkap</label> -->
-												<input type="text" id="namaLengkap" class="form-control" placeholder="Nama Lengkap" name="name" value="{{ old('name') }}" required>
+												<input type="text" id="name" class="form-control" placeholder="Nama Lengkap" name="name" value="{{ old('name') }}" required>
+												@if ($errors->has('name'))
+			                      <div class="text-danger">
+			                          <strong><small>{{ $errors->first('name') }}</small></strong>
+			                      </div>
+			                  @endif
 											</div>
 
 											<div class="col-md-12 space">
 												<!-- <label for="fname">Username</label> -->
-												<input type="text" id="fname" class="form-control" placeholder="Username" name="username" value="{{ old('username') }}" required>
+												<input type="text" id="username" class="form-control" placeholder="Username (unique)" name="username" value="{{ old('username') }}" required>
+												@if ($errors->has('username'))
+			                      <div class="text-danger">
+			                          <strong><small>{{ $errors->first('username') }}</small></strong>
+			                      </div>
+			                  @endif
 											</div>
 
 											<div class="col-md-12 space">
 												<!-- <label for="email">Email</label> -->
 												<input type="text" id="email" class="form-control" type="email" placeholder="Email" name="email" value="{{ old('email') }}" required>
+												@if ($errors->has('email'))
+			                      <div class="text-danger">
+			                          <strong><small>{{ $errors->first('email') }}</small></strong>
+			                      </div>
+			                  @endif
 											</div>
 
 											<div class="col-md-12">
 												<!-- <label for="kemail">Konfirmasi Email</label> -->
 												<input type="text" id="phone" class="form-control" placeholder="No Handphone" name="phone" value="{{ old('phone') }}" required>
+												@if ($errors->has('phone'))
+			                      <div class="text-danger">
+			                          <strong><small>{{ $errors->first('phone') }}</small></strong>
+			                      </div>
+			                  @endif
 											</div>
 										</div>
 
@@ -51,6 +71,11 @@
 											<div class="col-md-12 space">
 												<!-- <label for="password">Password</label> -->
 												<input type="password" id="password" class="form-control" placeholder="Password" name="password" required>
+												@if ($errors->has('password'))
+			                      <div class="text-danger">
+			                          <strong><small>{{ $errors->first('password') }}</small></strong>
+			                      </div>
+			                  @endif
 											</div>
 
 											<div class="col-md-12 space">

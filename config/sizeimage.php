@@ -24,5 +24,10 @@ return [
   'watermark' => [
     'opacity' => 30, //semakin besar maka akan semakin jelas
     'percentage' => 50 //semakin kurang nilainya, maka akan semakin besar gambarnya
+  ],
+
+  'buktiPembayaran' => [
+    'x' => 600,
+    'y' => 400
   ]
 ];

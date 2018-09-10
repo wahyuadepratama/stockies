@@ -9,7 +9,7 @@
           <div class="col-md-12">
               <div class="card strpied-tabled-with-hover">
                   <div class="card-header ">
-                      <h4 class="card-title">Transaksi dengan Status "Waiting"</h4>
+                      <h4 class="card-title">Daftar Semua Transaksi</h4>
                   </div>
                   <div class="card-body">
 
@@ -23,7 +23,7 @@
                             <th>Cart</th>
                             <th>Username</th>
                             <th>Email</th>
-                            <th>Bukti Pembayaran</th>
+                            <th>Bukti</th>
                             <th>Action</th>
                         </thead>
                         <tbody>
@@ -31,15 +31,22 @@
                           <tr>
                             <td>{{$isi->id_transaksi}}</td>
                             <td>{{$isi->status}}</td>
-                            <td>{{$isi->waktu}}</td>
+                            <td>{{ \Carbon\Carbon::parse($isi->waktu)->format('d M Y / H:i:s')}}</td>
                             <td><a href="/admin/transaction/cart/{{$isi->id_transaksi}}">Show</a></td>
                             <td>{{$isi->username}}</td>
                             <td>{{$isi->penerima}}</td>
-                            <td><a data-toggle="modal" data-target="#bukti{{$isi->id}}" href="bukti{{$isi->id}}">Show</a></td>
                             <td>
-                              @if($isi->satus == "paid")
-                              <p><a class="text-success" href="/admin/transaction/approve/{{$isi->id_transaksi}}">Approve</a></p>&nbsp;&nbsp;
+                              @if($isi->status == "waiting")
+                                <p>Belum di Upload</p>
                               @endif
+                              @if($isi->status == "paid")
+                                <a class="btn btn-primary" data-toggle="modal" data-target="#bukti{{$isi->id_transaksi}}" href="bukti{{$isi->id_transaksi}}">Show</a>
+                              @endif
+                              @if($isi->status == "approved")
+                                <p>Selesai</p>
+                              @endif
+                            </td>
+                            <td>
                               <p><a class="text-danger" data-toggle="modal" data-target="#delete{{$isi->id}}" href="delete{{$isi->id}}">Delete</a></p>
                             </td>
 
@@ -57,12 +64,13 @@
                                 </div>
                             </div>
 
-                            <div class="modal fade modal modal-primary" id="bukti{{$isi->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal fade modal modal-primary" id="bukti{{$isi->id_transaksi}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                       <div class="modal-body text-center">
                                         <p>Total: Rp. {{$isi->total}}</p>
                                         <img width="300" height="240" src="{{asset('storage/pembayaran/'.$isi->bank)}}">
+                                        <p><a class="btn btn-success" style="margin-top:2%" href="/admin/transaction/approve/{{$isi->id_transaksi}}">Approve</a></p>
                                       </div>
                                     </div>
                                 </div>

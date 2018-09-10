@@ -123,9 +123,9 @@ class PhotoController extends Controller
               'small_ori' => $request->name.'_small_'.$filename,
               'medium_ori' => $request->name.'_medium_'.$filename,
               'large_ori' => $request->name.'_large_'.$filename,
-              'price_small' => $request->price_small,
-              'price_medium' => $request->price_medium,
-              'price_large' => $request->price_large,
+              'price_small' => 5000,
+              'price_medium' => 7500,
+              'price_large' => 10000,
               'id_category' => $request->category,
               'id_user' => $user,
               'created_at' => Carbon::now()->setTimezone('Asia/Jakarta')
@@ -179,10 +179,7 @@ class PhotoController extends Controller
         return Validator::make($data, [
             'image' => 'required|mimes:jpeg,jpg,png|max:10240',
             'name'  => 'required|string',
-            'category' => 'required',
-            'price_small' => 'required',
-            'price_medium' => 'required',
-            'price_large' => 'required'
+            'category' => 'required'
         ]);
     }
 

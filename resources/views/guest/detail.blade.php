@@ -3,7 +3,7 @@
 @section('content')
 
 	<div class="container" style="margin-top:7%">
-	<header id="image" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url({{asset('storage/photo/'.$photo->large)}});">
+	<header id="image" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url({{asset('storage/photo/'.$photo->small)}});">
 		<div class="overlay"></div>
 
 			<div class="row">
@@ -217,7 +217,7 @@
 						<div class="product-grid" style="background-image:url({{asset('storage/photo/'.$key1->small)}});">
 							<div class="inner">
 								<p>
-									<a href="" class="icon"><i class="icon-shopping-cart"></i></a>
+									<a href="/detail/{{$key1->slug}}" class="icon"><i class="icon-shopping-cart"></i></a>
 									<a href="/detail/{{$key1->slug}}" class="icon"><i class="icon-eye"></i></a>
 								</p>
 							</div>

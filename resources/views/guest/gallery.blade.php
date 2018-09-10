@@ -20,7 +20,7 @@
 							<div class="product-grid" style="background-image:url(storage/photo/{{$key->small}});">
 								<div class="inner">
 									<p>
-										<a href="" class="icon"><i class="icon-shopping-cart"></i></a>
+										<a href="detail/{{$key->slug}}" class="icon"><i class="icon-shopping-cart"></i></a>
 										<a href="detail/{{$key->slug}}" class="icon"><i class="icon-eye"></i></a>
 									</p>
 								</div>

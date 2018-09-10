@@ -11,12 +11,17 @@
 					<div class="col-md-5">
 						<div class=" desc transaksi-selesai">
 							<h3>Pesan #{{ $message->id }}</h3><br>
+              <h4>{{ \Carbon\Carbon::parse($message->created_at)->format('d M Y / H:i:s')}}</h4>
 
-              <div class="col-md-4">
-                  <p><b>Pengirim: </b></p>
-                  <p><b>Pesan:</b></p>
+              <div class="col-md-2">
+                <p><b>Pengirim</b></p>
+                <p><b>Pesan</b></p>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-1">
+                <p>:</p>
+                <p>:</p>
+              </div>
+              <div class="col-md-9">
                   <p>{{ $message->senders->username }}</p>
                   <p>{{ $message->body }}</p>
               </div>

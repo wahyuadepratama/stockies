@@ -20,13 +20,12 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('user');
     }
 
     public function index()
     {
       if(Auth::user()->role_id == 1){
-        return redirect('admin');
+        return redirect('stockies-admin');
       }else{
         $like    = Status::with('photo')->where('id_user',Auth::user()->id)->get();
         $waiting = Transaction::where('id_user',Auth::user()->id)->where('status','waiting')->orderBy('created_at', 'desc')->get();
@@ -51,6 +50,7 @@ class HomeController extends Controller
                                   ->select('photos.*')
                                   ->where('transactions.id_user','=',Auth::user()->id)
                                   ->where('transactions.status','=','waiting')
+                                  ->orWhere('transactions.status','=','paid')
                                   ->get();
 
         return view('user.home')->with('likes', $like)

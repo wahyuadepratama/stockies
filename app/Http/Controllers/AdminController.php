@@ -107,11 +107,19 @@ class AdminController extends Controller
                 ->with('publish',$publish);
     }
 
-    public function approve($id)
+    public function approve(Request $request,$id)
     {
       $update = Photo::findOrFail($id);
       $update->active = 1;
       $update->save();
+
+      Message::create([
+        'body' => "Foto yang kamu upload dengan judul '".$request->judul."' telah di publish!",
+        'sender' => Auth::user()->id,
+        'receiver' => $request->id_user,
+        'created_at' => Carbon::now()->setTimezone('Asia/Jakarta')
+      ]);
+
       return back()->with('success','Foto telah di publish!');
     }
 
@@ -120,10 +128,11 @@ class AdminController extends Controller
       $update = Photo::find($id);
       $update->active = 0;
       $update->save();
+
       return back()->with('success','Foto telah dibatalkan untuk di publish!');
     }
 
-    public function photoDestroy($id)
+    public function photoDestroy(Request $request, $id)
     {
       $data = Photo::findOrFail($id);
 
@@ -134,6 +143,13 @@ class AdminController extends Controller
       Storage::delete('original_photo/'.$data->small_ori);
       Storage::delete('original_photo/'.$data->medium_ori);
       Storage::delete('original_photo/'.$data->large_ori);
+
+      Message::create([
+        'body' => "Foto kamu dengan judul ".$request->judul." gagal di publish karena tidak sesuai dengan ketentuan kami.",
+        'sender' => Auth::user()->id,
+        'receiver' => $request->id_user,
+        'created_at' => Carbon::now()->setTimezone('Asia/Jakarta')
+      ]);
 
       Photo::find($id)->delete();
       return back()->with('success', 'Foto Berhasil Dihapus');
@@ -171,8 +187,8 @@ class AdminController extends Controller
 
     public function indexCart($id)
     {
-      $data =  Cart::with('photo')->where('id_transaksi',$id)->get();      
-      return view('admin.cart')->with('data',$data);
+      $data =  Cart::with('photo')->where('id_transaksi',$id)->get();
+      return view('admin.cart')->with('data',$data)->with('id_transaksi',$id);
     }
 
     public function indexMessage()

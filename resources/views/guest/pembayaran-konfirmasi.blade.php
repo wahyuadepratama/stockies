@@ -19,12 +19,13 @@
                    Sebelumnya, pastikan kamu sudah melakukan transfer sebesar <b>Rp.{{$transaksi->total}}.</b></p>
                   <input type="file" name="image" value="Foto" style="margin-bottom:2%;">
                   @if ($errors->has('image'))
-                      <div class="text-danger">
-                          <strong><small>{{ $errors->first('image') }}</small></strong>
-                      </div>
+                    <div class="text-danger">
+                        <strong><small>{{ $errors->first('image') }}</small></strong>
+                    </div>
                   @endif
   							<div class="col-md-12 form-group one">
                   <input type="submit" name="image" value="Upload Bukti Transfer" class="btn btn-primary">
+                  <input type="hidden" name="id" value="{{$transaksi->id}}">
   							</div>
   						</div>
             </form>

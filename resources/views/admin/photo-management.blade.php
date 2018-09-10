@@ -23,7 +23,7 @@
                             <th>Id</th>
                             <th>Pemilik</th>
                             <th>Photo</th>
-                            <th>Harga</th>
+                            <th>Detail</th>
                             <th>Publish</th>
                             <th>Delete</th>
                         </thead>
@@ -36,10 +36,19 @@
                               <a data-toggle="modal" data-target="#1{{$isi->id}}" href="1{{$isi->id}}">Show</a>
                             </td>
                             <td>
-                              <a data-toggle="modal" data-target="#harga{{$isi->id}}" href="harga{{$isi->id}}">Price</a>
+                              <a data-toggle="modal" data-target="#harga{{$isi->id}}" href="harga{{$isi->id}}">Detail</a>
                             </td>
-                            <td> <a class="text-success" href="/admin/photo-management/approve/{{$isi->id}}">Approve</a> </td>
-                            <td> <a class="text-danger" data-toggle="modal" data-target="#delete{{$isi->id}}" href="delete{{$isi->id}}">Delete</a> </td>
+                            <td>
+                              <form action="/admin/photo-management/approve/{{$isi->id}}" method="post">
+                                {{ csrf_field() }}
+                                <input type="submit" class="btn btn-success" value="Approve">
+                                <input type="hidden" name="judul" value="{{$isi->nama}}">
+                                <input type="hidden" name="id_user" value="{{$isi->id_user}}">
+                              </form>
+                            </td>
+                            <td>
+                               <a class="btn btn-danger" data-toggle="modal" data-target="#delete{{$isi->id}}" href="delete{{$isi->id}}">Delete</a>
+                            </td>
 
                             <div class="modal fade modal modal-primary" id="1{{$isi->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -55,6 +64,7 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                       <div class="modal-body text-center">
+                                        <p><b>Judul: {{$isi->nama}}</b></p>
                                         <p>Small: Rp.{{$isi->price_small}}</p>
                                         <p>Medium: Rp.{{$isi->price_medium}}</p>
                                         <p>Large: Rp.{{$isi->price_large}}</p>
@@ -76,6 +86,8 @@
                                       </div>
                                       <div class="modal-footer">
                                         <form action="/admin/photo-management/delete/{{$isi->id}}" method="post">
+                                          <input type="hidden" name="judul" value="{{$isi->nama}}">
+                                          <input type="hidden" name="id_user" value="{{$isi->id_user}}">
                                           <button type="submit" class="btn btn-link btn-simple">Ya</button>
                                           <button type="button" class="btn btn-link btn-simple" data-dismiss="modal">Close</button>
                                           {{csrf_field()}}
@@ -134,10 +146,6 @@
                         <input type="checkbox" name="keyword[]" value="{{$isi3->id}}"> {{$isi3->nama}}</input>&nbsp;
                       @endforeach
                       </div>
-
-                      <br><input type="number" name="price_small" class="form-control" placeholder="Harga Ukuran Small"/>
-                      <input type="number" name="price_medium" class="form-control" placeholder="Harga Ukuran Medium" style="margin-top:2%;"/>
-                      <input type="number" name="price_large" class="form-control" placeholder="Harga Ukuran Large" style="margin-top:2%;"/>
 
                       <input type="submit" value="Upload" class="form-control btn btn-fill" style="margin-top:2%;">
                     </form>

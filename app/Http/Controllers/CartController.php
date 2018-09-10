@@ -68,8 +68,8 @@ class CartController extends Controller
       $this->validator($request->all())->validate();
 
       $subtotal = str_replace( ',', '', Cart::subtotal() );
-      $unique = rand(100,399);
-      $subtotal = $subtotal + $unique;
+      // $unique = rand(100,399);
+      // $subtotal = $subtotal + $unique;
 
       $transaksi = Transaction::create([
         'id_user' => Auth::user()->id,
@@ -115,6 +115,7 @@ class CartController extends Controller
     public function uploadBukti(Request $request)
     {
       $this->validatorUpload($request->all())->validate();
+
       if( $request->hasFile('image') ){
 
         $conf     = \Config::get('sizeimage.buktiPembayaran');
@@ -124,14 +125,12 @@ class CartController extends Controller
         $path     = 'storage/pembayaran/' . 'bukti_'.$filename;
         $resize   = Image::make($file)->resize($conf['x'], $conf['y'])->save($path);
 
-        $id = Transaction::where('id_user',Auth::user()->id)->firstOrFail();
-
-        $transaksi = Transaction::findOrFail($id->id);
+        $transaksi = Transaction::findOrFail($request->id);
         $transaksi->bank = 'bukti_'.$filename;
         $transaksi->status = "paid";
         $transaksi->save();
 
-        return view('guest.pembayaran-selesai')->with('email',$id->email);
+        return view('guest.pembayaran-selesai')->with('email',$transaksi->email);
 
       }else{
 

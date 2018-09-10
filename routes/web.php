@@ -2,6 +2,7 @@
 
 Auth::routes();
 Route::get('home', 'HomeController@index');
+Route::get('home/profile', function(){ return "On Progress..";} );
 Route::get('home/message/{id}', 'HomeController@showMessage');
 Route::get('home/message/delete/{id}', 'HomeController@deleteMessage');
 
@@ -39,10 +40,10 @@ Route::group(['middleware' => 'auth'], function(){
 //-------------- End of auth for PhotoController ------------//
 
 //------------ Halaman admin --------------//
-Route::get('admin', 'AdminController@index');
+Route::get('stockies-admin', 'AdminController@index');
 
 Route::get('admin/transaction', 'AdminController@indexTransaction');
-Route::get('admin/transaction/approve/{id}', 'AdminController@approveTransaction');
+Route::get('admin/transaction/approve/{id}/{id_user}', 'AdminController@approveTransaction');
 Route::get('admin/transaction/cart/{id}', 'AdminController@indexCart');
 
 Route::get('admin/keyword-kategori', 'AdminController@keywordKategori');
@@ -52,7 +53,7 @@ Route::post('admin/keyword/delete/{id}', 'AdminController@keywordDestroy');
 Route::post('admin/kategori/delete/{id}', 'AdminController@kategoriDestroy');
 
 Route::get('admin/photo-management', 'AdminController@photoManagement');
-Route::get('admin/photo-management/approve/{id}', 'AdminController@approve');
+Route::post('admin/photo-management/approve/{id}', 'AdminController@approve');
 Route::get('admin/photo-management/refuse/{id}', 'AdminController@refuse');
 Route::post('admin/photo-management/delete/{id}', 'AdminController@photoDestroy');
 

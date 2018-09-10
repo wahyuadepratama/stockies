@@ -3,8 +3,20 @@
 @section('content')
     <div id="fh5co-about">
       <div class="container">
-        <div class="row dashboard_akun">
-          <div class="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeIn">
+        <div class="row">
+
+          <div class="col-md-3">
+            <center>
+              <img src="{{ asset('storage/avatar/'.Auth::user()->avatar) }}">
+              <h3 style="margin-top:5%">{{Auth::user()->name}}</h3>
+              <strong class="email">{{Auth::user()->email}}</strong><br>
+              <p>{{Auth::user()->username}}</p>
+              <p>{{Auth::user()->phone}}</p>
+              <a href="/home/profile" class="btn btn-info">Update Profile</a>
+            </center>
+          </div>
+
+          <!-- <div class="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeIn">
             <div class="fh5co-staff" style="align:center">
               <div class="col-md-12">
                 <img src="{{ asset('storage/avatar/'.Auth::user()->avatar) }}">
@@ -23,10 +35,10 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
 
-          <div class="col-md-8 col-sm-12 animate-box dashboard_alert" data-animate-effect="fadeIn">
+          <div class="col-md-9" data-animate-effect="fadeIn">
 
             <div class="col-md-12" style="margin-bottom: 3%">
               <h3>Dashboard</h3>
@@ -39,7 +51,7 @@
               @foreach($paid as $paid)
               <div class="alert orange" style="background-color: #28a745;">
                 <span class="closebtn">&times;</span>
-                <a style="color:white;" href="/pembayaran/konfirmasi/selesai/{{$paid->id}}"><b>#{{$paid->id}} Pembayaran Berhasil Dilakukan, Foto Kamu Akan Segera Dikirim. Klik Disini Untuk Info Lebih Lanjut</b></a>
+                <a style="color:white;" href="/pembayaran/konfirmasi/selesai/{{$paid->id}}"><b>#{{$paid->id}} Pembayaran Berhasil Dilakukan! Foto Menunggu Verifikasi Admin. Klik Disini Untuk Info Lebih Lanjut</b></a>
               </div>
               @endforeach
               @foreach($active as $active)
@@ -49,13 +61,11 @@
               </div>
               @endforeach
             </div>
-
             <div class="notifikasi">
               <div class="icon_text">
                 <div class="col-md-1 col-xs-1 col-sm-1"><img src="{{asset('storage/images/icon_notification.png')}}"></div>
                 <div class="col-md-3 col-xs-4 col-sm-10 text"><h4>Notifikasi ({{ $notif }})</h4></div>
               </div>
-
               <div class="col-md-12">
                 @foreach($message as $message)
                 <div class="alert orange col-sm-12 col-xs-12">
@@ -69,6 +79,7 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -107,7 +118,7 @@
   		<div id="dashboard" class="container sukai">
   			<div class="row animate-box dashboard_title">
   				<div class="col-md-8">
-  					<div  class="col-md-1 col-sm-2 col-xs-2 icon3"><img src="{{asset('storage/images/ic_local_mall_24px.png')}}"></div>
+  					<div  class="col-md-1 col-sm-2 col-xs-2 icon3"><img src="{{asset('storage/images/wait.png')}}"></div>
   					<div class="col-md-5 col-sm-10 col-xs-10"><h2>Foto yang sedang diproses</h2></div>
   				</div>
   			</div>

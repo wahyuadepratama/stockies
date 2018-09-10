@@ -28,7 +28,7 @@
 									<div class="product-grid" style="background-image:URL({{asset('storage/photo/'.$key->medium)}})">
 										<div class="inner">
 											<p>
-												<a href="" class="icon"><i class="icon-shopping-cart"></i></a>
+												<a href="/detail/{{$key->slug}}" class="icon"><i class="icon-shopping-cart"></i></a>
 												<a href="/detail/{{$key->slug}}" class="icon"><i class="icon-eye"></i></a>
 											</p>
 										</div>
@@ -49,7 +49,7 @@
 									<div class="product-grid" style="background-image:URL({{asset('storage/photo/'.$key1->small)}})">
 										<div class="inner">
 											<p>
-												<a href="" class="icon"><i class="icon-shopping-cart"></i></a>
+												<a href="/detail/{{$key1->slug}}" class="icon"><i class="icon-shopping-cart"></i></a>
 												<a href="/detail/{{$key1->slug}}" class="icon"><i class="icon-eye"></i></a>
 											</p>
 										</div>
@@ -71,7 +71,7 @@
 									<div class="product-grid" style="background-image:URL({{asset('storage/photo/'.$key2->small)}})">
 										<div class="inner">
 											<p>
-												<a href="" class="icon"><i class="icon-shopping-cart"></i></a>
+												<a href="/detail/{{$key2->slug}}" class="icon"><i class="icon-shopping-cart"></i></a>
 												<a href="/detail/{{$key2->slug}}" class="icon"><i class="icon-eye"></i></a>
 											</p>
 										</div>

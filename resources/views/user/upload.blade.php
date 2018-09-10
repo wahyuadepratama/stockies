@@ -12,7 +12,7 @@
             <div class="slider-text-inner">
               <div class="desc">
                 <span class="price"></span>
-                <h2>Dapatkan Penghasilan dari Karya Fotomu.</h2>
+                <h3 style="color:white; font-size:300%;font-weight:bold;">Dapatkan Penghasilan dari Karya Fotomu</h3>
               </div>
             </div>
           </div>
@@ -69,24 +69,6 @@
                   @endforeach
                   </div>
 
-                  <br><input type="number" name="price_small" class="form-control" placeholder="Harga Ukuran Small"/>
-                  @if ($errors->has('price_small'))
-                      <div class="text-danger">
-                          <strong><small>{{ $errors->first('price_small') }}</small></strong>
-                      </div>
-                  @endif
-                  <input type="number" name="price_medium" class="form-control" placeholder="Harga Ukuran Medium" style="margin-top:2%;"/>
-                  @if ($errors->has('price_medium'))
-                      <div class="text-danger">
-                          <strong><small>{{ $errors->first('price_medium') }}</small></strong>
-                      </div>
-                  @endif
-                  <input type="number" name="price_large" class="form-control" placeholder="Harga Ukuran Large" style="margin-top:2%;"/>
-                  @if ($errors->has('price_large'))
-                      <div class="text-danger">
-                          <strong><small>{{ $errors->first('price_large') }}</small></strong>
-                      </div>
-                  @endif
                   <input type="submit" value="Upload" class="form-control btn" style="margin-top:2%; background-color:#bf8b16; color:white">
                 </form>
 

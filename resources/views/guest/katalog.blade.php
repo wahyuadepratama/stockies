@@ -26,7 +26,7 @@
 								<div class="product-grid" style="background-image:url({{asset('storage/photo/'.$key1->photo->small)}});">
 									<div class="inner">
 										<p>
-											<a href="" class="icon"><i class="icon-shopping-cart"></i></a>
+											<a href="/detail/{{$key1->photo->slug}}" class="icon"><i class="icon-shopping-cart"></i></a>
 											<a href="/detail/{{$key1->photo->slug}}" class="icon"><i class="icon-eye"></i></a>
 										</p>
 									</div>
@@ -34,7 +34,7 @@
 
 								<div class="col-md-12 product2">
 										<div class="desc col-md-10 col-sm-9 col-xs-9">
-											<h3 class="col-md-12 col-sm-12 col-xs-12"><a href="single.html">{{$key1->photo->nama}}</a></h3>
+											<h3 class="col-md-12 col-sm-12 col-xs-12"><a href="/detail/{{$key1->photo->slug}}">{{$key1->photo->nama}}</a></h3>
 											<span class="price col-md-12 col-sm-12 col-xs-12"><p>Karya {{$key1->user->username}}</p></span>
 										</div>
 										<div class="col-md-2 col-sm-2 col-xs-2 like" >
@@ -68,7 +68,7 @@
 
 									<div class="col-md-12 product2">
 											<div class="desc col-md-10 col-sm-9 col-xs-9">
-												<h3 class="col-md-12 col-sm-12 col-xs-12"><a href="single.html">{{$key2->photo->nama}}</a></h3>
+												<h3 class="col-md-12 col-sm-12 col-xs-12"><a href="/detail/{{$key2->photo->slug}}">{{$key2->photo->nama}}</a></h3>
 												<span class="price col-md-12 col-sm-12 col-xs-12"><p>Karya {{$key2->user->username}}</p></span>
 											</div>
 											<div class="col-md-2 col-sm-2 col-xs-2 like" >

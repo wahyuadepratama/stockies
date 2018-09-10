@@ -51,6 +51,7 @@ class HomeController extends Controller
                                   ->where('transactions.id_user','=',Auth::user()->id)
                                   ->where('transactions.status','=','waiting')
                                   ->orWhere('transactions.status','=','paid')
+                                  ->where('transactions.id_user','=',Auth::user()->id)
                                   ->get();
 
         return view('user.home')->with('likes', $like)

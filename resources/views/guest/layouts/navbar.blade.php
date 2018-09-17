@@ -1,12 +1,18 @@
-<nav class="fh5co-nav" role="navigation">
-  <div class="container" style="font-weight:bolder; ">
+<script type="text/javascript">
+  window.onscroll = function(e) {
+    document.getElementById('changeColor').style.backgroundColor = "#ffffffe6";
+  }
+</script>
+
+<nav class="fh5co-nav" id="changeColor" role="navigation">
+  <div class="container " style="font-weight:bolder;">
     <div class="row">
       <div class="col-md-5 col-xs-1">
         <div id="fh5co-logo" class="pos-demo"><a href="/"><img src="{{asset('storage/images/Logo Fix.png')}}"></a></div>
       </div>
       <div class="col-md-7 col-xs-8 text-center menu-1">
         <ul>
-          <li class="" >
+          <li>
             <a href="/upload" style="color: #bf8b16">
               <img src="{{asset('storage/images/ic_add_a_photo_24px.png')}}">
             Unggah Foto</a>
@@ -58,12 +64,12 @@
   						<ul class="dropdown login">
   							<div>
   								<li>Sudah punya Akun ?</li>
-  								<a href="/login"><button type="submit" class="btn btn-default btn-block checkout"><p>Login</p></button></a>
+  								<a href="/login"><button type="submit" style="padding-top:5%" class="btn btn-default btn-block checkout">Login</button></a>
   							</div>
 
   							<div>
   								<li>Ingin membuat Akun ?</li>
-  								<a href="/register"><button type="submit" class="btn btn-default btn-block checkout"><p>Daftar</p></button></a>
+  								<a href="/register"><button type="submit" class="btn btn-default btn-block checkout">Daftar</button></a>
   							</div>
   						</ul>
   				 </li>

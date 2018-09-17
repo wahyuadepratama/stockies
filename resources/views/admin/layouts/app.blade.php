@@ -49,7 +49,7 @@
                   </li>
                   <li class="nav-item {{ Request::is('admin/transaction') ? 'active' : '' }}">
                       <a class="nav-link" href="/admin/transaction">
-                          <i class="nc-icon nc-paper-2"></i>
+                          <i class="nc-icon nc-delivery-fast"></i>
                           <p>Transaction</p>
                       </a>
                   </li>
@@ -63,6 +63,12 @@
                       <a class="nav-link" href="/admin/comment">
                           <i class="nc-icon nc-ruler-pencil"></i>
                           <p>Comments</p>
+                      </a>
+                  </li>
+                  <li class="nav-item {{ Request::is('admin/voucher') ? 'active' : '' }}">
+                      <a class="nav-link" href="/admin/voucher">
+                          <i class="nc-icon nc-paper-2"></i>
+                          <p>Vouchers</p>
                       </a>
                   </li>
               </ul>

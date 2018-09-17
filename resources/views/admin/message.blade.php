@@ -14,7 +14,7 @@
                     <div class="card-body">
                       <form action="/admin/message/send" method="post">
                         {{ csrf_field() }}
-                        <textarea name="body" rows="5" cols="10%" class="form-control"></textarea><br>
+                        <textarea name="body" rows="5" cols="10%" class="form-control" placeholder="Tulis Pesan anda disini"></textarea><br>
                         @if ($errors->has('body'))
                             <div class="text-danger">
                                 <strong><small>{{ $errors->first('body') }}</small></strong>

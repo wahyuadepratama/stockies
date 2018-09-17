@@ -2,213 +2,92 @@
 
 @section('content')
 <div class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card ">
-                    <div class="card-header ">
-                        <h4 class="card-title">Email Statistics</h4>
-                        <p class="card-category">Last Campaign Performance</p>
-                    </div>
-                    <div class="card-body ">
-                        <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
-                    </div>
-                    <div class="card-footer ">
-                        <div class="legend">
-                            <i class="fa fa-circle text-info"></i> Open
-                            <i class="fa fa-circle text-danger"></i> Bounce
-                            <i class="fa fa-circle text-warning"></i> Unsubscribe
-                        </div>
-                        <hr>
-                        <div class="stats">
-                            <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="card ">
-                    <div class="card-header ">
-                        <h4 class="card-title">Users Behavior</h4>
-                        <p class="card-category">24 Hours performance</p>
-                    </div>
-                    <div class="card-body ">
-                        <div id="chartHours" class="ct-chart"></div>
-                    </div>
-                    <div class="card-footer ">
-                        <div class="legend">
-                            <i class="fa fa-circle text-info"></i> Open
-                            <i class="fa fa-circle text-danger"></i> Click
-                            <i class="fa fa-circle text-warning"></i> Click Second Time
-                        </div>
-                        <hr>
-                        <div class="stats">
-                            <i class="fa fa-history"></i> Updated 3 minutes ago
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="container">
+
+        <div class="row" style="margin-bottom:2%">
+          <div class="col-md-3">
+            <button type="button" name="button" class="btn btn-danger btn-block" style="font-size:130%;font-weight:bolder;">
+              <li style="font-size:250%;font-weight:bolder" class="nc-icon nc-paper-2"></li>
+                <br> Transactions <br> {{$totalTransaction}} x
+            </button>
+          </div>
+          <div class="col-md-3">
+            <button type="button" name="button" class="btn btn-primary btn-block" style="font-size:130%;font-weight:bolder">
+              <li style="font-size:250%;font-weight:bolder" class="nc-icon nc-delivery-fast"></li>
+                <br> Transaction Approved <br> {{$transactionApproved}}
+            </button>
+          </div>
+          <div class="col-md-3">
+            <button type="button" name="button" class="btn btn-info btn-block" style="font-size:130%;font-weight:bolder">
+              <li style="font-size:250%;font-weight:bolder" class="nc-icon nc-cart-simple"></li>
+                <br> Transaction Paid <br> {{$transactionPaid}}
+            </button>
+          </div>
+          <div class="col-md-3">
+            <button type="button" name="button" class="btn btn-success btn-block" style="font-size:130%;font-weight:bolder">
+              <li style="font-size:250%;font-weight:bolder" class="nc-icon nc-time-alarm"></li>
+                <br> Transaction Waiting <br> {{$transactionWaiting}}
+            </button>
+          </div>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card ">
-                    <div class="card-header ">
-                        <h4 class="card-title">2017 Sales</h4>
-                        <p class="card-category">All products including Taxes</p>
-                    </div>
-                    <div class="card-body ">
-                        <div id="chartActivity" class="ct-chart"></div>
-                    </div>
-                    <div class="card-footer ">
-                        <div class="legend">
-                            <i class="fa fa-circle text-info"></i> Tesla Model S
-                            <i class="fa fa-circle text-danger"></i> BMW 5 Series
-                        </div>
-                        <hr>
-                        <div class="stats">
-                            <i class="fa fa-check"></i> Data information certified
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card  card-tasks">
-                    <div class="card-header ">
-                        <h4 class="card-title">Tasks</h4>
-                        <p class="card-category">Backend development</p>
-                    </div>
-                    <div class="card-body ">
-                        <div class="table-full-width">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" value="">
-                                                    <span class="form-check-sign"></span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" value="" checked>
-                                                    <span class="form-check-sign"></span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" value="" checked>
-                                                    <span class="form-check-sign"></span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                        </td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" checked>
-                                                    <span class="form-check-sign"></span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>Create 4 Invisible User Experiences you Never Knew About</td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" value="">
-                                                    <span class="form-check-sign"></span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>Read "Following makes Medium better"</td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" value="" disabled>
-                                                    <span class="form-check-sign"></span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>Unfollow 5 enemies from twitter</td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="card-footer ">
-                        <hr>
-                        <div class="stats">
-                            <i class="now-ui-icons loader_refresh spin"></i> Updated 3 minutes ago
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+        <div class="row" style="margin-bottom:2%;">
+          <div class="col-md-4">
+            <button type="button" name="button" class="btn btn-default btn-block" style="font-size:130%;font-weight:bolder;background-color:#888888;color:white">
+              <li style="font-size:250%;font-weight:bolder" class="nc-icon nc-layers-3"></li>
+                <br> Photos <br> {{$photo}}
+            </button>
+          </div>
+          <div class="col-md-4">
+            <button type="button" name="button" class="btn btn-info btn-block" style="font-size:130%;font-weight:bolder;background-color:#1DC7EA;color:white">
+              <li style="font-size:250%;font-weight:bolder" class="nc-icon nc-camera-20"></li>
+                <br> Photo Published <br> {{$photoPublished}}
+            </button>
+          </div>
+          <div class="col-md-4">
+            <button type="button" name="button" class="btn btn-danger btn-block" style="font-size:130%;font-weight:bolder;background-color:#FF4A55;color:white">
+              <li style="font-size:250%;font-weight:bolder" class="nc-icon nc-album-2"></li>
+                <br> Photo Waiting to Publish <br> {{$photoWaiting}}
+            </button>
+          </div>
         </div>
+
+        <div class="row" style="margin-bottom:2%">
+          <div class="col-md-6">
+            <button type="button" name="button" class="btn btn-warning btn-block" style="font-size:130%;font-weight:bolder;">
+              <li style="font-size:250%;font-weight:bolder" class="nc-icon nc-backpack"></li>
+                <br> Financial Transactions <br> Rp {{number_format(($financialTransaction),0,',','.')}}
+            </button>
+          </div>
+          <div class="col-md-6">
+            <button type="button" name="button" class="btn btn-success btn-block" style="font-size:130%;font-weight:bolder;">
+              <li style="font-size:250%;font-weight:bolder" class="nc-icon nc-money-coins"></li>
+                <br> Profit Transactions <br> Rp {{number_format(($profitTransaction),0,',','.')}}
+            </button>
+          </div>
+        </div>
+
+        <div class="row" style="margin-bottom:2%">
+          <div class="col-md-3">
+            <button type="button" name="button" class="btn btn-success btn-block" style="font-size:130%;font-weight:bolder;background-color:#87CB16;color:white;">
+              <li style="font-size:250%;font-weight:bolder" class="nc-icon nc-circle-09"></li>
+                <br> User Registered <br> {{$user}}
+            </button>
+          </div>
+          <div class="col-md-3">
+            <button type="button" name="button" class="btn btn-primary btn-block" style="font-size:130%;font-weight:bolder;background-color:#3472F7;color:white">
+              <li style="font-size:250%;font-weight:bolder" class="nc-icon nc-zoom-split"></li>
+                <br> Keyword <br> {{$keyword}}
+            </button>
+          </div>
+          <div class="col-md-3">
+            <button type="button" name="button" class="btn btn-warning btn-block" style="font-size:130%;font-weight:bolder;background-color:#FF9500;color:white">
+              <li style="font-size:250%;font-weight:bolder" class="nc-icon nc-bullet-list-67"></li>
+                <br> Category <br> {{$category}}
+            </button>
+          </div>
+        </div>
+
     </div>
 </div>
 @endsection

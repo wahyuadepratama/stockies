@@ -23,7 +23,7 @@
               </div>
               <div class="col-md-9">
                   <p>{{ $message->senders->username }}</p>
-                  <p>{{ $message->body }}</p>
+                  <p>{!!html_entity_decode($message->body)!!}</p>
               </div>
 
 							<div class="form-group one">

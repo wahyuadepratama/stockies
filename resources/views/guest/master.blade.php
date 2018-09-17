@@ -2,7 +2,7 @@
 <html>
 	<head>
 		@include('guest.includes.head')
-		@include('guest.includes.head-index')
+		@include('guest.includes.head-index')		
 	</head>
 	<body onload="message()">
 

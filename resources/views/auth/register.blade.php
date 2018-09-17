@@ -67,7 +67,6 @@
 
 
 										<div class="row form-group col-md-6">
-
 											<div class="col-md-12 space">
 												<!-- <label for="password">Password</label> -->
 												<input type="password" id="password" class="form-control" placeholder="Password" name="password" required>
@@ -94,12 +93,10 @@
 												        <option value="Lainnya">Lainnya</option>
 												      </select>
 												   </div>
-
 											</div>
 
 											<div class="col-md-12 space">
-
-												<div class="form-group col-md-3 col-sm-12 col-xs-12 ">
+													<div class="form-group col-md-3 col-sm-12 col-xs-12 ">
 												      <label for="inputState2">Tanggal Lahir</label>
 												  </div>
 												  <div class="col-md-3 col-sm-4 col-xs-4">
@@ -134,7 +131,6 @@
                                 @endwhile
 												      </select>
 												   </div>
-
 											</div>
 										</div>
 

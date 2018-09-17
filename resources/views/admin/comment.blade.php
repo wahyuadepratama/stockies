@@ -9,7 +9,7 @@
           <div class="col-md-12">
               <div class="card strpied-tabled-with-hover">
                   <div class="card-header ">
-                      <h4 class="card-title">Transaksi dengan Status "Waiting"</h4>
+                      <h4 class="card-title">Daftar Semua Komentar</h4>
                   </div>
                   <div class="card-body">
 

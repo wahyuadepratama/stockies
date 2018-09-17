@@ -160,7 +160,7 @@
                         <h4 class="card-title">Daftar Foto yang Telah di Publish</h4>
                     </div>
                     <div class="card-body">
-                      <table id="dataTable" class="table table-hover table-striped">
+                      <table id="dataTable1" class="table table-hover table-striped">
                         <thead>
                           <th>Id</th>
                           <th>Judul</th>
@@ -202,6 +202,13 @@
                           @endforeach
                         </tbody>
                       </table>
+
+                      <script type="text/javascript">
+                        $(document).ready( function () {
+                          $('#dataTable1').DataTable();
+                        } );
+                      </script>
+
                     </div>
                 </div>
             </div>

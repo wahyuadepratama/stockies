@@ -3,59 +3,44 @@
 @section('content')
     <div id="fh5co-about">
       <div class="container">
-        <div class="row">
+        <div class="row animate-box">
 
-          <div class="col-md-3">
+          <div class="col-md-3 animate-box">
             <center>
-              <img src="{{ asset('storage/avatar/'.Auth::user()->avatar) }}">
+              <img src="{{ asset('storage/avatar/'.Auth::user()->avatar) }}" style="border-radius:50%">
               <h3 style="margin-top:5%">{{Auth::user()->name}}</h3>
               <strong class="email">{{Auth::user()->email}}</strong><br>
               <p>{{Auth::user()->username}}</p>
               <p>{{Auth::user()->phone}}</p>
+              <p>
+                <a href="/home/wallet" style="font-weight:bolder;color:black" class="btn btn-default">
+                  <img src="{{ asset('storage/images/money.png') }}" style="border-radius:">&nbsp; Rp {{number_format((Auth::user()->wallet),0,',','.')}}
+                </a>
+              </p>
               <a href="/home/profile" class="btn btn-info">Update Profile</a>
+              <a href="/home/change-password" class="btn btn-danger">Ubah Password</a>
             </center>
           </div>
 
-          <!-- <div class="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeIn">
-            <div class="fh5co-staff" style="align:center">
-              <div class="col-md-12">
-                <img src="{{ asset('storage/avatar/'.Auth::user()->avatar) }}">
-                <h3>{{Auth::user()->name}}</h3>
-                <strong class="email">{{Auth::user()->email}}</strong>
-              </div>
-              <div class="icon_dashboard">
-                <div class="col-md-12">
-                  <div class="col-md-1 col-xs-1"><img src="{{asset('storage/images/ic_place_24px.png')}}"></div>
-                  <div class="col-md-8 col-xs-10"><p>{{Auth::user()->username}}</p></div>
-                </div>
 
-                <div class="col-md-12 ket">
-                  <div class="col-md-1 col-xs-1"><img src="{{asset('storage/images/ic_local_mall_24px.png')}}"></div>
-                  <div class="col-md-8 col-xs-10"><p>{{Auth::user()->phone}}</p></div>
-                </div>
-              </div>
-            </div>
-          </div> -->
-
-
-          <div class="col-md-9" data-animate-effect="fadeIn">
+          <div class="col-md-9 animate-box" data-animate-effect="fadeIn">
 
             <div class="col-md-12" style="margin-bottom: 3%">
               <h3>Dashboard</h3>
               @foreach($waiting as $waiting)
-              <div class="alert orange" style="background-color: #dc3545;">
+              <div class="alert orange animate-box" style="background-color: #dc3545;">
                 <span class="closebtn">&times;</span>
                 <a style="color:white;" href="/pembayaran/konfirmasi/{{$waiting->id}}"><b>#{{$waiting->id}} Segera Lakukan Konfirmasi Pembayaran Kamu Disini</b></a>
               </div>
               @endforeach
               @foreach($paid as $paid)
-              <div class="alert orange" style="background-color: #28a745;">
+              <div class="alert orange animate-box" style="background-color: #28a745;">
                 <span class="closebtn">&times;</span>
                 <a style="color:white;" href="/pembayaran/konfirmasi/selesai/{{$paid->id}}"><b>#{{$paid->id}} Pembayaran Berhasil Dilakukan! Foto Menunggu Verifikasi Admin. Klik Disini Untuk Info Lebih Lanjut</b></a>
               </div>
               @endforeach
               @foreach($active as $active)
-              <div class="alert orange" style="background-color: #007bff;">
+              <div class="alert orange animate-box" style="background-color: #007bff;">
                 <span class="closebtn">&times;</span>
                 <a style="color:white;" href="#"><b>#{{$active->id}} Foto dengan judul "{{$active->nama}}" sedang menunggu persetujuan admin untuk segera di publish.</b></a>
               </div>
@@ -68,7 +53,7 @@
               </div>
               <div class="col-md-12">
                 @foreach($message as $message)
-                <div class="alert orange col-sm-12 col-xs-12">
+                <div class="alert orange col-sm-12 col-xs-12 animate-box" style="background-color:#bf8b16c9;color:white;">
                  <span class="closebtn">&times;</span>
                   <div class="col-md-7">
                     <a style="color:white;" href="/home/message/{{$message->id}}">#{{ $message->id }} Kamu menerima pesan baru dari <b>{{ $message->senders->username }}</b></a>

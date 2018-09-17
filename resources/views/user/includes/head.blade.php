@@ -121,3 +121,47 @@ $(document).ready(function(){
         });
  });
  </script>
+
+
+ <script type="text/javascript">
+ function message(){
+   @if($message = Session::get('success'))
+
+     $(".pos-demo").notify(
+       "{{ $message }}", "success",
+       { position:"bottom" }
+     );
+
+   @elseif($message = Session::get('warning'))
+
+     $(".pos-demo").notify(
+       "{{ $message }}", "warn",
+       { position:"bottom" }
+     );
+
+   @elseif($message = Session::get('info'))
+
+     $(".pos-demo").notify(
+       "{{ $message }}", "info",
+       { position:"bottom" }
+     );
+
+   @elseif($message = Session::get('error'))
+
+     $(".pos-demo").notify(
+       "{{ $message }}", "error",
+       { position:"bottom" }
+     );
+
+   @elseif($errors->first())
+
+     $(".pos-demo").notify(
+       "{{ $message }}", "error",
+       { position:"bottom" }
+     );
+
+   @else
+     return false;
+   @endif
+ }
+ </script>

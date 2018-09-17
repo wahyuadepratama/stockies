@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Role;
 use App\Models\Photo;
 use App\Models\Comment;
+use App\Models\Voucher;
 use App\Models\Keyword;
 use App\Models\Message;
 use App\Models\Category;
@@ -28,7 +29,32 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('admin.dashboard');
+      $user = User::where('role_id',2)->count();
+      $photos = Photo::all()->count();
+      $photoPublished = Photo::where('active',1)->count();
+      $photoWaiting = Photo::where('active',0)->count();
+      $category = Category::all()->count();
+      $keyword = Keyword::all()->count();
+      $transactionApproved = Transaction::where('status','approved')->count();
+      $transactionWaiting = Transaction::where('status','waiting')->count();
+      $transactionPaid = Transaction::where('status','paid')->count();
+      $totalTransaction = Transaction::count();
+      $financialTransaction = Transaction::sum('total');
+      $profitTransaction = User::where('id',Auth::user()->id)->first();
+
+
+      return view('admin.dashboard')->with('user',$user)
+                                    ->with('category',$category)
+                                    ->with('keyword',$keyword)
+                                    ->with('transactionApproved',$transactionApproved)
+                                    ->with('transactionWaiting',$transactionWaiting)
+                                    ->with('transactionPaid',$transactionPaid)
+                                    ->with('totalTransaction',$totalTransaction)
+                                    ->with('financialTransaction',$financialTransaction)
+                                    ->with('profitTransaction',$profitTransaction->wallet)
+                                    ->with('photo',$photos)
+                                    ->with('photoWaiting',$photoWaiting)
+                                    ->with('photoPublished',$photoPublished);
     }
 
     public function getAllUser(){
@@ -107,14 +133,14 @@ class AdminController extends Controller
                 ->with('publish',$publish);
     }
 
-    public function approve(Request $request,$id)
+    public function approvePhoto(Request $request,$id)
     {
       $update = Photo::findOrFail($id);
       $update->active = 1;
       $update->save();
 
       Message::create([
-        'body' => "Foto yang kamu upload dengan judul '".$request->judul."' telah di publish!",
+        'body' => "Foto yang kamu upload dengan judul <b>".$request->judul."</b> telah di publish!",
         'sender' => Auth::user()->id,
         'receiver' => $request->id_user,
         'created_at' => Carbon::now()->setTimezone('Asia/Jakarta')
@@ -123,7 +149,7 @@ class AdminController extends Controller
       return back()->with('success','Foto telah di publish!');
     }
 
-    public function refuse($id)
+    public function refusePhoto($id)
     {
       $update = Photo::find($id);
       $update->active = 0;
@@ -132,7 +158,7 @@ class AdminController extends Controller
       return back()->with('success','Foto telah dibatalkan untuk di publish!');
     }
 
-    public function photoDestroy(Request $request, $id)
+    public function destroyPhoto(Request $request, $id)
     {
       $data = Photo::findOrFail($id);
 
@@ -145,7 +171,7 @@ class AdminController extends Controller
       Storage::delete('original_photo/'.$data->large_ori);
 
       Message::create([
-        'body' => "Foto kamu dengan judul ".$request->judul." gagal di publish karena tidak sesuai dengan ketentuan kami.",
+        'body' => "Foto kamu dengan judul <b>".$request->judul."</b> gagal di publish karena tidak sesuai dengan ketentuan kami.",
         'sender' => Auth::user()->id,
         'receiver' => $request->id_user,
         'created_at' => Carbon::now()->setTimezone('Asia/Jakarta')
@@ -179,10 +205,109 @@ class AdminController extends Controller
 
     public function approveTransaction($id)
     {
-      $data = Transaction::find($id);
-      $data->status = "approved";
-      $data->save();
-      return back()->with('success','Transaksi telah di setujui!');
+      $transaksi = Transaction::find($id);
+      $transaksi->status = "approved";
+      $transaksi->updated_at = Carbon::now()->setTimezone('Asia/Jakarta');
+      $transaksi->save();
+
+      $conf = \Config::get('transaction');
+
+      $cart = Cart::where('id_transaksi',$id)->get();
+      $x = 0;
+      foreach($cart as $isi){
+        $userProfit = ($conf['user-profit']/100) * $isi->price;
+        $adminProfit = ($conf['admin-profit']/100) * $isi->price;
+
+        $data[$x] = Photo::with('user')->where('id',$isi->id_photo)->firstOrFail();
+        $data[$x]->user->wallet = $data[$x]->user->wallet + $userProfit;
+        $data[$x]->user->save();
+
+        $dataAdmin = User::find(Auth::user()->id)->firstOrFail();
+        $dataAdmin->wallet = $dataAdmin->wallet + $adminProfit;
+        $dataAdmin->save();
+
+        $x++;
+      }
+
+      Message::create([
+        'body' => "Transaksi dengan nomor <b>#".$transaksi->id."</b> sudah kami setujui. Silahkan cek foto yang sudah dibeli pada email <b>".$transaksi->email."</b>. Terima kasih sudah membeli foto di Stockies ^_^",
+        'sender' => Auth::user()->id,
+        'receiver' => $transaksi->id_user,
+        'created_at' => Carbon::now()->setTimezone('Asia/Jakarta')
+      ]);
+
+      return back()->with('success','Transaksi telah di setujui! Pesan approve sudah dikirimkan ke user');
+    }
+
+    public function refuseTransaction($id)
+    {
+      $transaksi = Transaction::find($id);
+      $transaksi->status = "paid";
+      $transaksi->updated_at = Carbon::now()->setTimezone('Asia/Jakarta');
+      $transaksi->save();
+
+      $conf = \Config::get('transaction');
+
+      $cart = Cart::where('id_transaksi',$id)->get();
+      $x = 0;
+      foreach($cart as $isi){
+        $userProfit = ($conf['user-profit']/100) * $isi->price;
+        $adminProfit = ($conf['admin-profit']/100) * $isi->price;
+
+        $data[$x] = Photo::with('user')->where('id',$isi->id_photo)->firstOrFail();
+        $data[$x]->user->wallet = $data[$x]->user->wallet - $userProfit;
+        $data[$x]->user->save();
+
+        $dataAdmin = User::find(Auth::user()->id)->firstOrFail();
+        $dataAdmin->wallet = $dataAdmin->wallet - $adminProfit;
+        $dataAdmin->save();
+
+        $x++;
+      }
+
+      Message::create([
+        'body' => "Maaf transaksi dengan nomor <b>#".$transaksi->id."</b> harus kami batalkan karena beberapa kesalahan, silahkan cek status pesanan kamu!",
+        'sender' => Auth::user()->id,
+        'receiver' => $transaksi->id_user,
+        'created_at' => Carbon::now()->setTimezone('Asia/Jakarta')
+      ]);
+
+      return back()->with('success','Transaksi telah di dibatalkan! Pesan pembatalan telah dikirim ke user');
+    }
+
+    public function rejectTransaction($id)
+    {
+      $transaksi = Transaction::find($id);
+      $transaksi->status = "waiting";
+      $transaksi->updated_at = Carbon::now()->setTimezone('Asia/Jakarta');
+      $transaksi->save();
+
+      Storage::delete('pembayaran/'.$transaksi->bank);
+
+      Message::create([
+        'body' => "Maaf transaksi dengan nomor <b>#".$transaksi->id."</b> harus kami tolak karena bukti pembayaran yang kamu kirimkan tidak sesuai dengan yang seharusnya, silahkan cek status pesanan kamu!",
+        'sender' => Auth::user()->id,
+        'receiver' => $transaksi->id_user,
+        'created_at' => Carbon::now()->setTimezone('Asia/Jakarta')
+      ]);
+
+      return back()->with('success','Transaksi telah ditolak! Pesan penolakan telah dikirim ke user');
+    }
+
+    public function deleteTransaction($id)
+    {
+      $transaksi = Transaction::find($id);
+
+      Message::create([
+        'body' => "Maaf transaksi dengan nomor <b>#".$transaksi->id."</b> harus kami hapus karena sudah melanggar aturan transaksi di Stockies. Silahkan lakukan transaksi ulang dikeranjang kamu!",
+        'sender' => Auth::user()->id,
+        'receiver' => $transaksi->id_user,
+        'created_at' => Carbon::now()->setTimezone('Asia/Jakarta')
+      ]);
+
+      $transaksi->delete();
+
+      return back()->with('success','Transaksi telah dihapus! Pesan penghapusan sudah dikirim ke user');
     }
 
     public function indexCart($id)
@@ -227,7 +352,38 @@ class AdminController extends Controller
     {
       $data = Comment::find($id);
       $data->delete();
-      return back()->with('succes','Komentar berhasil dihapus!');
+      return back()->with('success','Komentar berhasil dihapus!');
+    }
+
+    public function indexVoucher()
+    {
+      $all = Voucher::all();
+      return view('admin.voucher')->with('all',$all);
+    }
+
+    public function createVoucher(Request $request)
+    {
+      $this->validate($request,[
+        'discount' => 'required',
+        'code'  => 'required|unique:vouchers',
+        'information' => 'required'
+      ]);
+
+      Voucher::create([
+        'percent_discount' => $request->discount,
+        'code' => $request->code,
+        'information' => $request->information,
+        'created_at' => Carbon::now()->setTimezone('Asia/Jakarta')
+      ]);
+
+      return back()->with('success','Data Voucher Berhasil Ditambahkan!');
+    }
+
+    public function deleteVoucher($id)
+    {
+      $data = Voucher::find($id);
+      $data->delete();
+      return back()->with('success','Voucher berhasil dihapus!');
     }
 
 }

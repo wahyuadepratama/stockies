@@ -22,7 +22,7 @@ class CartController extends Controller
     }
 
     public function index()
-    {
+    {      
       return view('guest.keranjang');
     }
 
@@ -54,12 +54,31 @@ class CartController extends Controller
                   'user' => $request->name
                 ])->associate('App\Models\Photo');
 
+      Cart::instance('voucher')->add($request->id, $request->nama, 1, $result[0],[
+                  'path' => $result[1],
+                  'src' => $result[2],
+                  'ukuran' => $result[3],
+                  'username' => $request->username,
+                  'user' => $request->name
+                ])->associate('App\Models\Photo');
+
+      Cart::instance('backup')->add($request->id, $request->nama, 1, $result[0],[
+                  'path' => $result[1],
+                  'src' => $result[2],
+                  'ukuran' => $result[3],
+                  'username' => $request->username,
+                  'user' => $request->name
+                ])->associate('App\Models\Photo');
+
       return back()->with('success','Foto berhasil ditambahkan ke keranjang!');
     }
 
     public function destroy($id)
     {
         Cart::remove($id);
+        Cart::instance('voucher')->remove($id);
+        Cart::instance('backup')->remove($id);
+        Cart::instance('discount')->destroy();
         return back()->with('warning','Foto berhasil dikeluarkan dari keranjang!');
     }
 
@@ -90,6 +109,9 @@ class CartController extends Controller
       }
 
       Cart::destroy();
+      Cart::instance('voucher')->destroy();
+      Cart::instance('backup')->destroy();
+      Cart::instance('discount')->destroy();
 
       return redirect('pembayaran/konfirmasi/'.$transaksi->id);
 

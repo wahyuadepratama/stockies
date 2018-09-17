@@ -16,7 +16,7 @@
   						<div class="desc konfirmasi">
   							<h3>Konfirmasi  Pembayaran #{{$transaksi->id}}</h3>
   							<p>Terimakasih telah melakukan transaksi pembelian. Silakan upload bukti transfer dan lakukan konfirmasi pembayaran.
-                   Sebelumnya, pastikan kamu sudah melakukan transfer sebesar <b>Rp.{{$transaksi->total}}.</b></p>
+                   Sebelumnya, pastikan kamu sudah melakukan transfer sebesar <b>Rp {{number_format(($transaksi->total),0,',','.')}}</b></p>
                   <input type="file" name="image" value="Foto" style="margin-bottom:2%;">
                   @if ($errors->has('image'))
                     <div class="text-danger">

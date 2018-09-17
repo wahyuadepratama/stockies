@@ -43,26 +43,12 @@
                                 <a class="btn btn-primary" data-toggle="modal" data-target="#bukti{{$isi->id_transaksi}}" href="bukti{{$isi->id_transaksi}}">Show</a>
                               @endif
                               @if($isi->status == "approved")
-                                <p>Selesai</p>
+                                <a class="btn btn-success" data-toggle="modal" data-target="#selesai{{$isi->id_transaksi}}" href="selesai{{$isi->id_transaksi}}">Selesai</a>
                               @endif
                             </td>
                             <td>
-                              <p><a class="text-danger" data-toggle="modal" data-target="#delete{{$isi->id}}" href="delete{{$isi->id}}">Delete</a></p>
+                              <p><a class="text-danger" data-toggle="modal" data-target="#delete{{$isi->id_transaksi}}" href="delete{{$isi->id_transaksi}}">Delete</a></p>
                             </td>
-
-                            <div class="modal fade modal modal-primary" id="cart{{$isi->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                      @foreach($all as $isi1)
-                                      <div class="modal-body text-center">
-                                        <p>Ukuran: {{$isi1->ukuran}}</p>
-                                        <p>Harga: {{$isi1->price}}</p>
-                                        <img width="300" height="240" src="{{asset('storage/photo/'.$isi1->path)}}">
-                                      </div>
-                                      @endforeach
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="modal fade modal modal-primary" id="bukti{{$isi->id_transaksi}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -70,13 +56,28 @@
                                       <div class="modal-body text-center">
                                         <p>Total: Rp. {{$isi->total}}</p>
                                         <img width="300" height="240" src="{{asset('storage/pembayaran/'.$isi->bank)}}">
-                                        <p><a class="btn btn-success" style="margin-top:2%" href="/admin/transaction/approve/{{$isi->id_transaksi}}">Approve</a></p>
+                                        <p>
+                                          <a class="btn btn-success" style="margin-top:2%" href="/admin/transaction/approve/{{$isi->id_transaksi}}">Approve</a>
+                                          <a class="btn btn-danger" style="margin-top:2%" href="/admin/transaction/reject/{{$isi->id_transaksi}}">Reject</a>
+                                        </p>
                                       </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="modal fade modal modal-primary" id="delete{{$isi->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal fade modal modal-primary" id="selesai{{$isi->id_transaksi}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-body text-center">
+                                        <p>Total: Rp. {{$isi->total}}</p>
+                                        <img width="300" height="240" src="{{asset('storage/pembayaran/'.$isi->bank)}}">
+                                        <p><a class="btn btn-danger" style="margin-top:2%" href="/admin/transaction/refuse/{{$isi->id_transaksi}}">Refuse</a></p>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal fade modal modal-primary" id="delete{{$isi->id_transaksi}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                       <div class="modal-header justify-content-center">
@@ -85,10 +86,10 @@
                                           </div>
                                       </div>
                                       <div class="modal-body text-center">
-                                          <p>Apakah anda yakin akan menghapus foto ini?</p>
+                                          <p>Apakah anda yakin akan menghapus Transaksi ini? Semua <b>Cart</b> yang menggunakan transaksi ini juga akan ikut terhapus!</p>
                                       </div>
                                       <div class="modal-footer">
-                                        <form action="/admin/photo-management/delete/{{$isi->id}}" method="post">
+                                        <form action="/admin/transaction/delete/{{$isi->id_transaksi}}" method="post">
                                           <button type="submit" class="btn btn-link btn-simple">Ya</button>
                                           <button type="button" class="btn btn-link btn-simple" data-dismiss="modal">Close</button>
                                           {{csrf_field()}}

@@ -20,6 +20,19 @@
 
           <li><a href="/katalog">Cari Foto</a></li>
 
+          <li class="has-dropdown">
+							<a href="">Kategori</a>
+
+							<ul class="dropdown kategori">
+                @php
+                $category = App\Models\Category::all();
+                foreach($category as $data){
+                  echo '<a href="/katalog/'. $data->id .'".><li>'. $data->nama .'</li></a>';
+                }
+                @endphp
+							</ul>
+						</li>
+
           <li class="">
             <a href="/about">Tentang Kami</a>
           </li>

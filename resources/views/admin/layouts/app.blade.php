@@ -71,6 +71,12 @@
                           <p>Vouchers</p>
                       </a>
                   </li>
+                  <li class="nav-item {{ Request::is('admin/config') ? 'active' : '' }}">
+                      <a class="nav-link" href="/admin/config">
+                          <i class="nc-icon nc-settings-tool-66"></i>
+                          <p>Configuration</p>
+                      </a>
+                  </li>
               </ul>
           </div>
       </div>

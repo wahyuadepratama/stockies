@@ -122,7 +122,19 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 /*PENUTUP*/
 
+/*EDIT 21 SEPT*/
+@media screen and (max-width: 1024px) {
 
+  .fh5co-nav .nav{
+    font-size: 1px;
+  }
+
+  .fh5co-nav .nav ul{
+    margin-left: -30%;
+  }
+
+}
+/*PENUTUP*/
 
 @media screen and (max-width: 768px) {
   .fh5co-nav {
@@ -302,6 +314,30 @@ h1, h2, h3, h4, h5, h6, figure {
   -o-transition: 0s;
   transition: 0s;
 }
+
+/*EDIT 21 SEPT*/
+.fh5co-nav .nav ul li.has-dropdown .dropdown{
+  left: 0;
+}
+
+.fh5co-nav .nav ul li.has-dropdown .login{
+  width: 200px;
+}
+
+.fh5co-nav ul li.has-dropdown .kategori {
+  width: 150px;
+}
+
+.fh5co-nav .has-dropdown .kategori a li{
+  color:  #828282;
+}
+
+.fh5co-nav .has-dropdown .kategori a li:hover{
+  color:  black;
+}
+
+/*PENUTUP*/
+
 .fh5co-nav ul li.has-dropdown .dropdown:before {
   bottom: 100%;
   left: 40px;

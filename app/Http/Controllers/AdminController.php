@@ -386,4 +386,41 @@ class AdminController extends Controller
       return back()->with('success','Voucher berhasil dihapus!');
     }
 
+    public function indexConfig()
+    {
+      return view('admin/config');
+    }
+
+    public function changeLanding(Request $request, $id)
+    {
+      $this->validate($request,[
+        'image' => 'required|mimes:jpeg,jpg,png|max:10240'
+      ]);
+
+      if($id == 1){
+
+        Storage::delete('landing/1.jpg');
+        $path   = 'storage/landing/1.jpg';
+        Image::make($request->image)->save($path);
+        return back()->with('success','Berhasil mengubah landing page 1');
+
+      }else if($id == 2){
+
+        Storage::delete('landing/2.jpg');
+        $path   = 'storage/landing/2.jpg';
+        Image::make($request->image)->save($path);
+        return back()->with('success','Berhasil mengubah landing page 2');
+
+      }else if($id == 3){
+
+        Storage::delete('landing/3.jpg');
+        $path   = 'storage/landing/3.jpg';
+        Image::make($request->image)->save($path);
+        return back()->with('success','Berhasil mengubah landing page 3');
+
+      }else{
+        return back()->with('success','Terjadi Kesalahan!');
+      }
+    }
+
 }

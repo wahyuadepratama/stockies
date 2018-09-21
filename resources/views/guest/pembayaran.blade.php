@@ -84,7 +84,7 @@
 										<div class="text col-md-7">
 										<p class="bank">Bank BNI</p>
 										<p class="no_rekening">0587513004</p>
-										<p class="nama">a/n Syafira Annisa</p>
+										<p class="nama">a/n Syafira Ennisa</p>
 										</div>
 									</div>
 
@@ -97,7 +97,7 @@
 										<div class="text col-md-7">
 										<p class="bank">Bank Mandiri</p>
 										<p class="no_rekening">111-00-11-5840-7</p>
-										<p class="nama">a/n Syafira Annisa</p>
+										<p class="nama">a/n Syafira Ennisa</p>
 										</div>
 									</div>
 
@@ -109,7 +109,7 @@
 										<div class="text col-md-7">
 										<p class="bank">Bank Nagari</p>
 										<p class="no_rekening">2102-0213-03925-3</p>
-										<p class="nama">a/n Syafira Annisa</p>
+										<p class="nama">a/n Syafira Ennisa</p>
 										</div>
 									</div>
 								</div>

@@ -77,6 +77,9 @@ Route::post('admin/comment/{id}','AdminController@deleteComments');
 Route::get('admin/voucher','AdminController@indexVoucher');
 Route::post('admin/voucher','AdminController@createVoucher');
 Route::post('admin/voucher/{id}','AdminController@deleteVoucher');
+
+Route::get('admin/config','AdminController@indexConfig');
+Route::post('admin/config/landing/{id}','AdminController@changeLanding');
 //------------ End of Halaman admin --------------//
 
 // For first landing Page

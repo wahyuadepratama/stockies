@@ -59,6 +59,7 @@
                                         <p>
                                           <a class="btn btn-success" style="margin-top:2%" href="/admin/transaction/approve/{{$isi->id_transaksi}}">Approve</a>
                                           <a class="btn btn-danger" style="margin-top:2%" href="/admin/transaction/reject/{{$isi->id_transaksi}}">Reject</a>
+                                          <a class="btn btn-info btn-fill" style="margin-top:2%" href="/admin/sendMail/{{$isi->id_transaksi}}">Send Photo to Email</a>
                                         </p>
                                       </div>
                                     </div>
@@ -71,7 +72,10 @@
                                       <div class="modal-body text-center">
                                         <p>Total: Rp. {{$isi->total}}</p>
                                         <img width="300" height="240" src="{{asset('storage/pembayaran/'.$isi->bank)}}">
-                                        <p><a class="btn btn-danger" style="margin-top:2%" href="/admin/transaction/refuse/{{$isi->id_transaksi}}">Refuse</a></p>
+                                        <p>
+                                          <a class="btn btn-danger" style="margin-top:2%" href="/admin/transaction/refuse/{{$isi->id_transaksi}}">Refuse</a>
+                                          <a class="btn btn-info" style="margin-top:2%" href="/admin/sendMail/{{$isi->id_transaksi}}">Send Photo to Email</a>
+                                        </p>
                                       </div>
                                     </div>
                                 </div>

@@ -70,7 +70,10 @@ class PhotoController extends Controller
     public function store(Request $request)
     {
       if($request->category == "0")
-        return back();
+        return back()->with('error','Kategori harus diisi!');
+
+      if($request['keyword'] == NULL)
+        return back()->with('error','Keyword harus diisi!');
 
       if(Auth::user()->role_id == 2)
         $user = Auth::user()->id;
@@ -131,13 +134,13 @@ class PhotoController extends Controller
               'created_at' => Carbon::now()->setTimezone('Asia/Jakarta')
             ]);
 
-            $id = Photo::orderBy('id','desc')->firstOrFail();
-            foreach($request['keyword'] as $isi){
-              KeywordPhoto::create([
-                'id_keyword' => $isi,
-                'id_photo' => $id->id
-              ]);
-            }
+          $id = Photo::orderBy('id','desc')->firstOrFail();
+          foreach($request['keyword'] as $isi){
+            KeywordPhoto::create([
+              'id_keyword' => $isi,
+              'id_photo' => $id->id
+            ]);
+          }
 
           return redirect('/home')->with('success','Foto Berhasil Ditambahkan');
 
@@ -232,4 +235,5 @@ class PhotoController extends Controller
       return view('user.upload')->with('category',$category)
                                 ->with('keyword',$keyword);
     }
+
 }

@@ -11,10 +11,12 @@ use App\Models\Comment;
 use App\Models\Voucher;
 use App\Models\Keyword;
 use App\Models\Message;
+use App\Mail\OrderPhoto;
 use App\Models\Category;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
@@ -421,6 +423,16 @@ class AdminController extends Controller
       }else{
         return back()->with('success','Terjadi Kesalahan!');
       }
+    }
+
+    public function sendMail($id)
+    {
+      $cart =  Cart::with('photo')->where('id_transaksi',$id)->get();
+      $data = Transaction::find($id);
+
+      Mail::to($data->email)->send(new OrderPhoto($cart));
+
+      return redirect('admin/transaction')->with('success','Foto berhasil dikirim ke user, transaksi selesai!');
     }
 
 }

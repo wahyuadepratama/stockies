@@ -80,6 +80,8 @@ Route::post('admin/voucher/{id}','AdminController@deleteVoucher');
 
 Route::get('admin/config','AdminController@indexConfig');
 Route::post('admin/config/landing/{id}','AdminController@changeLanding');
+
+Route::get('admin/sendMail/{id}','AdminController@sendMail');
 //------------ End of Halaman admin --------------//
 
 // For first landing Page

@@ -39,9 +39,9 @@
                                       <td>{{$data1->nama}}</td>
                                       <td>
 
-                                        <a class="btn btn-danger btn-fill" data-toggle="modal" data-target="#delete{{$data1->id}}" href="#delete{{$data1->id}}"><li class="fa fa-times"></li></a>&nbsp;
+                                        <a class="btn btn-danger btn-fill" data-toggle="modal" data-target="#deleteKeyword{{$data1->id}}" href="#deleteKeyword{{$data1->id}}"><li class="fa fa-times"></li></a>&nbsp;
 
-                                        <div class="modal fade modal modal-primary" id="delete{{$data1->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal fade modal modal-primary" id="deleteKeyword{{$data1->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                   <div class="modal-header justify-content-center">
@@ -103,9 +103,9 @@
                                       <td>{{$data->nama}}</td>
                                       <td>
 
-                                        <a class="btn btn-danger btn-fill" data-toggle="modal" data-target="#delete{{$data->id}}" href="#delete{{$data->id}}"><li class="fa fa-times"></li></a>&nbsp;
+                                        <a class="btn btn-danger btn-fill" data-toggle="modal" data-target="#deleteKategori{{$data->id}}" href="#deleteKategori{{$data->id}}"><li class="fa fa-times"></li></a>&nbsp;
 
-                                        <div class="modal fade modal modal-primary" id="delete{{$data->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal fade modal modal-primary" id="deleteKategori{{$data->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                   <div class="modal-header justify-content-center">

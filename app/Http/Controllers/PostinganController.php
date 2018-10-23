@@ -30,6 +30,10 @@ class PostinganController extends Controller
 
     public function indexCategory($nama)
     {
-      $data = CategoriPosting::where('nama',$nama)->get();
+      $data = CategoriPosting::where('nama',$nama)->first();
+
+      $posting = Posting::where('id_kategori', $data->id)->paginate(5);;
+      $kategori = CategoriPosting::all();
+      return view('guest/postingan-kategori')->with('posting', $posting)->with('kategori',$kategori);
     }
 }

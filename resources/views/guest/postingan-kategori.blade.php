@@ -9,7 +9,7 @@
           <div class="row">
 
             <div class="col-md-8 animate-box">
-              @foreach($all as $isi)
+              @foreach($posting as $isi)
               <div class="media animate-box" style="background-color: #ede0c53d; border-radius: 2em 0;">
                 <div class="media-left" style="padding: 6%; padding-top: 8%; padding-bottom: 8%">
                   <a href="#">
@@ -53,7 +53,7 @@
             </div>
 
             <div class="col-md-12">
-              {{ $all->links() }}
+              {{ $posting->links() }}
             </div>
 
           </div>

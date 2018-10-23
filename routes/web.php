@@ -18,7 +18,7 @@ Route::post('comment/save/{id}', 'CommentController@save');
 
 Route::get('blog', 'PostinganController@index');
 Route::get('blog/{slug}', 'PostinganController@show');
-Route::get('blog/{nama}', 'PostinganController@indexCategory');
+Route::get('blog/kategori/{nama}', 'PostinganController@indexCategory');
 Route::post('blog/comment/save/{id}', 'CommentController@saveCommentPosting');
 
 Route::get('cart','CartController@index');

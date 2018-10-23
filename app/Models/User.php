@@ -38,4 +38,8 @@ class User extends Authenticatable
     public function message(){
       return $this->hasMany('App\Models\Message');
     }
+
+    public function posting(){
+      return $this->hasMany('App\Models\Posting');
+    }
 }

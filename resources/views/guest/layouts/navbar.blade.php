@@ -12,16 +12,26 @@
       </div>
       <div class="col-md-7 col-xs-8 text-center menu-1">
         <ul>
+        @if(isset(Auth::user()->role_id))
+          @if(Auth::user()->role_id != 1)
           <li>
             <a href="/upload" style="color: #bf8b16">
               <img src="{{asset('storage/images/ic_add_a_photo_24px.png')}}">
             Unggah Foto</a>
           </li>
+          @endif
+        @else
+          <li>
+            <a href="/upload" style="color: #bf8b16">
+              <img src="{{asset('storage/images/ic_add_a_photo_24px.png')}}">
+            Unggah Foto</a>
+          </li>
+        @endif
 
-          <li><a href="/katalog">Cari Foto</a></li>
+          <li><a href="/blog">Blog</a></li>
 
           <li class="has-dropdown">
-							<a href="">Kategori</a>
+							<a href="/katalog">Cari Foto</a>
 
 							<ul class="dropdown kategori">
                 @php
@@ -44,15 +54,6 @@
                 <a href="/cart" class="cart"><span><small>{{ Cart::instance('default')->count(false) }}</small><i class="icon-shopping-cart"></i></span></a>
               </li>
 
-              <!-- <li class="has-dropdown">
-                <a href="services.html"><img src="{{asset('storage/images/icon_notification.png')}}"></a>
-                <ul class="dropdown">
-                  <div>
-                    <span class="closebtn">&times;</span>
-                    <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a></li>
-                  </div>
-                </ul>
-              </li> -->
             @endif
 
             @if(Request::is('home'))

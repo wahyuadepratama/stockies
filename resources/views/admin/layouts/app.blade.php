@@ -23,55 +23,61 @@
                   </a>
               </div>
               <ul class="nav">
-                  <li class="nav-item {{ Request::is('stockies-admin') ? 'active' : '' }}">
+                  <li class="nav-item {{ Request::is('stockies-admin', 'stockies-admin/*') ? 'active' : '' }}">
                       <a class="nav-link" href="/stockies-admin">
                           <i class="nc-icon nc-chart-pie-35"></i>
                           <p>Dashboard</p>
                       </a>
                   </li>
-                  <li class="nav-item {{ Request::is('admin/user-management') ? 'active' : '' }}">
+                  <li class="nav-item {{ Request::is('admin/user-management', 'admin/user-management/*') ? 'active' : '' }}">
                       <a class="nav-link" href="/admin/user-management">
                           <i class="nc-icon nc-single-02"></i>
                           <p>User Management</p>
                       </a>
                   </li>
-                  <li class="nav-item {{ Request::is('admin/keyword-kategori') ? 'active' : '' }}">
+                  <li class="nav-item {{ Request::is('admin/keyword-kategori', 'admin/keyword-kategori/*') ? 'active' : '' }}">
                       <a class="nav-link" href="/admin/keyword-kategori">
                           <i class="nc-icon nc-settings-tool-66"></i>
-                          <p>Keyword & Kategori</p>
+                          <p>Keyword & Category</p>
                       </a>
                   </li>
-                  <li class="nav-item {{ Request::is('admin/photo-management') ? 'active' : '' }}">
+                  <li class="nav-item {{ Request::is('admin/photo-management', 'admin/photo-management/*') ? 'active' : '' }}">
                       <a class="nav-link" href="/admin/photo-management">
                           <i class="nc-icon nc-album-2"></i>
                           <p>Photo Management</p>
                       </a>
                   </li>
-                  <li class="nav-item {{ Request::is('admin/transaction') ? 'active' : '' }}">
+                  <li class="nav-item {{ Request::is('admin/transaction', 'admin/transaction/*') ? 'active' : '' }}">
                       <a class="nav-link" href="/admin/transaction">
                           <i class="nc-icon nc-delivery-fast"></i>
                           <p>Transaction</p>
                       </a>
                   </li>
-                  <li class="nav-item {{ Request::is('admin/message') ? 'active' : '' }}">
+                  <li class="nav-item {{ Request::is('admin/message','admin/message/*') ? 'active' : '' }}">
                       <a class="nav-link" href="/admin/message">
                           <i class="nc-icon nc-email-83"></i>
                           <p>Messages</p>
                       </a>
                   </li>
-                  <li class="nav-item {{ Request::is('admin/comment') ? 'active' : '' }}">
+                  <li class="nav-item {{ Request::is('admin/comment', 'admin/comment/*') ? 'active' : '' }}">
                       <a class="nav-link" href="/admin/comment">
                           <i class="nc-icon nc-ruler-pencil"></i>
                           <p>Comments</p>
                       </a>
                   </li>
-                  <li class="nav-item {{ Request::is('admin/voucher') ? 'active' : '' }}">
+                  <li class="nav-item {{ Request::is('admin/voucher', 'admin/voucher/*') ? 'active' : '' }}">
                       <a class="nav-link" href="/admin/voucher">
                           <i class="nc-icon nc-paper-2"></i>
                           <p>Vouchers</p>
                       </a>
                   </li>
-                  <li class="nav-item {{ Request::is('admin/config') ? 'active' : '' }}">
+                  <li class="nav-item {{ Request::is('admin/posting', 'admin/posting/*') ? 'active' : '' }}">
+                      <a class="nav-link" href="/admin/posting">
+                          <i class="nc-icon nc-ruler-pencil"></i>
+                          <p>Posting</p>
+                      </a>
+                  </li>
+                  <li class="nav-item {{ Request::is('admin/config', 'admin/config/*') ? 'active' : '' }}">
                       <a class="nav-link" href="/admin/config">
                           <i class="nc-icon nc-settings-tool-66"></i>
                           <p>Configuration</p>

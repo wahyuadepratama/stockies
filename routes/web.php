@@ -16,6 +16,11 @@ Route::get('gallery', 'PhotoController@index');
 Route::get('detail/{slug}', 'PhotoController@show');
 Route::post('comment/save/{id}', 'CommentController@save');
 
+Route::get('blog', 'PostinganController@index');
+Route::get('blog/{slug}', 'PostinganController@show');
+Route::get('blog/{nama}', 'PostinganController@indexCategory');
+Route::post('blog/comment/save/{id}', 'CommentController@saveCommentPosting');
+
 Route::get('cart','CartController@index');
 Route::post('cart','CartController@store');
 Route::get('cart/delete/{id}','CartController@destroy');
@@ -60,7 +65,7 @@ Route::post('admin/keyword/delete/{id}', 'AdminController@keywordDestroy');
 Route::post('admin/kategori/delete/{id}', 'AdminController@kategoriDestroy');
 
 Route::get('admin/photo-management', 'AdminController@photoManagement');
-Route::post('admin/photo-management/approve/{id}', 'AdminController@approvePhoto');
+Route::post('admin/photo-management/approve/{id}', 'PhotoController@approvePhoto');
 Route::get('admin/photo-management/refuse/{id}', 'AdminController@refusePhoto');
 Route::post('admin/photo-management/delete/{id}', 'AdminController@destroyPhoto');
 
@@ -82,6 +87,17 @@ Route::get('admin/config','AdminController@indexConfig');
 Route::post('admin/config/landing/{id}','AdminController@changeLanding');
 
 Route::get('admin/sendMail/{id}','AdminController@sendMail');
+
+Route::get('admin/posting','AdminController@indexPosting');
+Route::get('admin/posting/create','AdminController@createPosting');
+Route::post('admin/posting/store','AdminController@storePosting');
+Route::get('admin/posting/update/{id}','AdminController@updatePosting');
+Route::post('admin/posting/update/store/{id}','AdminController@storeUpdatePosting');
+Route::get('admin/posting/destroy/{id}','AdminController@destroyPosting');
+
+Route::get('admin/posting/images','AdminController@indexImagesPosting');
+Route::post('admin/posting/images/store','AdminController@storeImagesPosting');
+Route::get('admin/posting/image/destroy/{id}','AdminController@destroyImagesPosting');
 //------------ End of Halaman admin --------------//
 
 // For first landing Page

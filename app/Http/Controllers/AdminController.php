@@ -8,13 +8,16 @@ use App\Models\User;
 use App\Models\Role;
 use App\Models\Photo;
 use App\Models\Comment;
+use App\Models\Posting;
 use App\Models\Voucher;
 use App\Models\Keyword;
 use App\Models\Message;
 use App\Mail\OrderPhoto;
 use App\Models\Category;
+use App\Models\ImagePosting;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Models\CategoriPosting;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
@@ -124,7 +127,7 @@ class AdminController extends Controller
         $category = Category::all();
         $keyword = Keyword::all();
         $user = User::where('role_id',2)->get();
-        $photo = Photo::with('user')->where('active',0)->get();
+        $photo = Photo::with('user')->where('active',0)->orWhere('active',2)->get();
         $publish = Photo::with('user')->where('active',1)->get();
 
         return view('admin.photo-management')
@@ -135,26 +138,10 @@ class AdminController extends Controller
                 ->with('publish',$publish);
     }
 
-    public function approvePhoto(Request $request,$id)
-    {
-      $update = Photo::findOrFail($id);
-      $update->active = 1;
-      $update->save();
-
-      Message::create([
-        'body' => "Foto yang kamu upload dengan judul <b>".$request->judul."</b> telah di publish!",
-        'sender' => Auth::user()->id,
-        'receiver' => $request->id_user,
-        'created_at' => Carbon::now()->setTimezone('Asia/Jakarta')
-      ]);
-
-      return back()->with('success','Foto telah di publish!');
-    }
-
     public function refusePhoto($id)
     {
       $update = Photo::find($id);
-      $update->active = 0;
+      $update->active = 2;
       $update->save();
 
       return back()->with('success','Foto telah dibatalkan untuk di publish!');
@@ -433,6 +420,129 @@ class AdminController extends Controller
       Mail::to($data->email)->send(new OrderPhoto($cart));
 
       return redirect('admin/transaction')->with('success','Foto berhasil dikirim ke user, transaksi selesai!');
+    }
+
+    public function indexPosting()
+    {
+      $posting = Posting::with('user')->with('kategoriPosting')->get();
+      return view('admin/posting')->with('posting',$posting);
+    }
+
+    public function createPosting()
+    {
+      $category = CategoriPosting::all();
+      return view('admin/posting-create')->with('category', $category);
+    }
+
+    public function storePosting(Request $request)
+    {
+      $this->validate($request,[
+        'judul' => 'required|unique:posting',
+        'postingan'  => 'required'
+      ]);
+
+      if($request->foto){
+        $slug   = str_slug($request->judul);
+        $path   = 'storage/postingan/feature_'.$slug;
+        Image::make($request->foto)->save($path);
+
+        $request->foto = 'feature_'.$slug;
+      }else{
+        $request->foto = "no_image.png";
+      }
+
+      Posting::create([
+        'judul' => $request->judul,
+        'isi' => $request->postingan,
+        'slug' => str_slug($request->judul),
+        'foto' => $request->foto,
+        'id_user' => Auth::user()->id,
+        'id_kategori' => $request->category,
+        'created_at' => Carbon::now()->setTimezone('Asia/Jakarta'),
+        'updated_at' => Carbon::now()->setTimezone('Asia/Jakarta')
+      ]);
+
+      return redirect('admin/posting')->with('success','Postingan Baru Berhasil di Publish!');
+    }
+
+    public function updatePosting($id)
+    {
+      $posting = Posting::with('kategoriPosting')->find($id);
+      $category = CategoriPosting::all();
+
+      return view('admin/posting-update')->with('category',$category)->with('old',$posting);
+    }
+
+    public function storeUpdatePosting(Request $request, $id)
+    {
+      $this->validate($request,[
+        'judul' => 'required',
+        'postingan'  => 'required'
+      ]);
+
+      $data = Posting::find($id);
+
+      if($request->foto){
+        $slug   = str_slug($request->judul);
+        $path   = 'storage/postingan/feature_'.$slug;
+        Image::make($request->foto)->save($path);
+        $request->foto = 'feature_'.$slug;
+        $data->foto = $request->foto;
+      }
+
+      $data->judul = $request->judul;
+      $data->isi = $request->postingan;
+      $data->slug = str_slug($request->judul);
+      $data->id_user = Auth::user()->id;
+      $data->id_kategori = $request->category;
+      $data->updated_at = Carbon::now()->setTimezone('Asia/Jakarta');
+      $data->save();
+
+      return redirect('admin/posting')->with('success','Postingan Berhasil di Update!');
+    }
+
+    public function destroyPosting($id)
+    {
+      $data = Posting::find($id);
+      Storage::delete('postingan/'.$data->foto);
+      Posting::destroy($id);
+      return back()->with('success','Postingan Berhasil Dihapus!');
+    }
+
+    public function indexImagesPosting()
+    {
+      $data = ImagePosting::all();
+      return view('admin/all-image-posting')->with('image', $data);
+    }
+
+    public function storeImagesPosting(Request $request)
+    {
+      if($request->foto){
+        $path   = 'storage/postingan/images_'.now();
+        Image::make($request->foto)->save($path);
+        $request->foto = 'images_'.now();
+      }else{
+        return back()->with('success','Pilih Gambar Terlebih Dahulu!');
+      }
+
+      $path_url = url('/').'/'.$path;
+
+      ImagePosting::create([
+        'name' => $request->foto,
+        'path' => $path_url,
+        'created_at' => Carbon::now()->setTimezone('Asia/Jakarta'),
+        'updated_at' => Carbon::now()->setTimezone('Asia/Jakarta')
+      ]);
+
+      return back()->with('success','Upload Image Berhasil!');
+    }
+
+    public function destroyImagesPosting($id)
+    {
+      $data = ImagePosting::find($id);
+      Storage::delete('postingan/'.$data->name);
+      ImagePosting::destroy($id);
+      return back()->with('success','Gambar Berhasil Dihapus!');
     }
 
 }

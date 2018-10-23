@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Photo;
 use App\Models\Status;
 use App\Models\Comment;
+use App\Models\Message;
 use App\Models\Keyword;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -96,36 +97,18 @@ class PhotoController extends Controller
             $createSmall = Image::make($thumbnail)->resize($conf['small']['x'], $conf['small']['y'])->save($small);
             $this->watermark($createSmall,$small);
 
-            $medium       = 'storage/photo/' . 'medium_'.$filename;   // direktori gambar dengan nama uploads
-            $createMedium = Image::make($thumbnail)->resize($conf['medium']['x'], $conf['medium']['y'])->save($medium);
-            $this->watermark($createMedium,$medium);
-
-            $large       = 'storage/photo/' . 'large_'.$filename;   // direktori gambar dengan nama uploads
-            $createLarge = Image::make($thumbnail)->resize($conf['large']['x'], $conf['large']['y'])->save($large);
-            $this->watermark($createLarge,$large);
-
-            //------------------------------ ORIGINAL FOTO ---------------------------------
-
-            $large_ori   = 'storage/original_photo/' . $request->name . '_large_'.$filename;   // direktori gambar dengan nama uploads
-            Image::make($thumbnail)->resize($conf['large']['x'], $conf['large']['y'])->save($large_ori);
-
-            $medium_ori   = 'storage/original_photo/' . $request->name . '_medium_'.$filename;   // direktori gambar dengan nama uploads
-            Image::make($thumbnail)->resize($conf['medium']['x'], $conf['medium']['y'])->save($medium_ori);
-
-            $small_ori   = 'storage/original_photo/' . $request->name . '_small_'.$filename;   // direktori gambar dengan nama uploads
-            Image::make($thumbnail)->resize($conf['small']['x'], $conf['small']['y'])->save($small_ori);
-
+            $thumbnail->move('storage/original_photo/', $filename);
 
             Photo::create([ //simpan ke database
               'nama' => $request->name,
               'slug' => str_slug($request->name.'-'.time()),
               'thumbnail' => 'thumb_'.$filename,
               'small' => 'small_'.$filename,
-              'medium' => 'medium_'.$filename,
-              'large' => 'large_'.$filename,
-              'small_ori' => $request->name.'_small_'.$filename,
-              'medium_ori' => $request->name.'_medium_'.$filename,
-              'large_ori' => $request->name.'_large_'.$filename,
+              'medium' => 'medium_',
+              'large' => 'large_',
+              'small_ori' => 'small_',
+              'medium_ori' => 'medium_',
+              'large_ori' => $filename,
               'price_small' => 5000,
               'price_medium' => 7500,
               'price_large' => 10000,
@@ -142,13 +125,82 @@ class PhotoController extends Controller
             ]);
           }
 
-          return redirect('/home')->with('success','Foto Berhasil Ditambahkan');
+          if(Auth::user()->role_id == 1)
+            return back()->with('success','Foto Berhasil Ditambahkan');
+          else
+            return redirect('/home')->with('success','Foto Berhasil Ditambahkan');
+
 
         }else{
 
           return back()->with('error','Pilih Foto Terlebih Dahulu!');
 
         }
+    }
+
+    public function approvePhoto(Request $request, $id)
+    {
+      $update = Photo::with('user')->findOrFail($id);
+
+      if($update->active == 2){
+        $update->active = 1;
+        $update->save();
+        return back()->with('success','Foto telah di publish!');
+      }
+
+      $update->active = 1;
+
+      //------------------------------ RESIZE FOTO ---------------------------------
+
+      $thumbnail     = Storage::get('original_photo/'.$update->large_ori);
+      $filename      = Auth::user()->username.'_'.time() . '.' . 'jpg';
+
+      $conf = \Config::get('sizeimage.ukuran');
+
+      $medium       = 'storage/photo/' . 'medium_'.$filename;   // direktori gambar dengan nama uploads
+      $createMedium = Image::make($thumbnail)->resize($conf['medium']['x'], $conf['medium']['y'])->save($medium);
+      $this->watermark($createMedium,$medium);
+
+      $large       = 'storage/photo/' . 'large_'.$filename;   // direktori gambar dengan nama uploads
+      $createLarge = Image::make($thumbnail)->resize($conf['large']['x'], $conf['large']['y'])->save($large);
+      $this->watermark($createLarge,$large);
+
+      //------------------------------ END RESIZE FOTO ---------------------------------
+
+      //------------------------------ ORIGINAL FOTO ---------------------------------
+
+      $large_ori   = 'storage/original_photo/' . $update->nama . '_large_'.$filename;   // direktori gambar dengan nama uploads
+      Image::make($thumbnail)->resize($conf['large']['x'], $conf['large']['y'])->save($large_ori);
+
+      $medium_ori   = 'storage/original_photo/' . $update->nama . '_medium_'.$filename;   // direktori gambar dengan nama uploads
+      Image::make($thumbnail)->resize($conf['medium']['x'], $conf['medium']['y'])->save($medium_ori);
+
+      $small_ori   = 'storage/original_photo/' . $update->nama . '_small_'.$filename;   // direktori gambar dengan nama uploads
+      Image::make($thumbnail)->resize($conf['small']['x'], $conf['small']['y'])->save($small_ori);
+
+      //------------------------------ END OF ORIGINAL FOTO ---------------------------------
+
+      //------------------------------ DELETE OLD IMAGE FROM STORAGE ------------------------
+
+      Storage::delete('original_photo/'.$update->large_ori);
+
+      //-------------------------------------------------------------------------------------
+
+      $update->medium = 'medium_'.$filename;
+      $update->large = 'large_'.$filename;
+      $update->small_ori = $update->nama.'_small_'.$filename;
+      $update->medium_ori = $update->nama.'_medium_'.$filename;
+      $update->large_ori = $update->nama.'_large_'.$filename;
+      $update->save();
+
+      Message::create([
+        'body' => "Foto yang kamu upload dengan judul <b>".$request->judul."</b> telah di publish!",
+        'sender' => Auth::user()->id,
+        'receiver' => $request->id_user,
+        'created_at' => Carbon::now()->setTimezone('Asia/Jakarta')
+      ]);
+
+      return back()->with('success','Foto telah di publish!');
     }
 
     public function watermark($img, $filename)

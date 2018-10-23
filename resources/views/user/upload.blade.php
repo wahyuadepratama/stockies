@@ -53,7 +53,7 @@
                     @endforeach
                   </select>
 
-                  <input type="file" name="image" value="Foto" class="form-control" style="margin-bottom:2%;" required>
+                  <input type="file" name="image" class="form-control" style="margin-bottom:2%;" required>
                   @if ($errors->has('image'))
                       <div class="text-danger">
                           <strong><small>{{ $errors->first('image') }}</small></strong>
@@ -69,8 +69,64 @@
                   @endforeach
                   </div>
 
-                  <input type="submit" value="Upload" class="form-control btn" style="margin-top:2%; background-color:#bf8b16; color:white">
+                  <input type="submit" id="saveButton" value="Upload" class="form-control btn" style="margin-top:2%; background-color:#bf8b16; color:white">
                 </form>
+
+                <div class="modal fade" id="progressDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                 <div class="modal-dialog">
+                     <div class="modal-content">
+                         <div class="modal-body">
+                             <p>Please wait while we update your topic. You will be redirected automatically!</p>
+
+                             <div class="progress progress-striped active">
+                                 <div class="progress-bar"  role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                     <span class="sr-only">/span>
+                                 </div>
+                             </div>
+                         </div>
+                     </div><!-- /.modal-content -->
+                 </div><!-- /.modal-dialog -->
+             </div><!-- /.modal -->
+
+                <div id="status"></div>
+
+                <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+                <script src="http://malsup.github.com/jquery.form.js"></script> -->
+
+                <script type="text/javascript">
+                $("#saveButton").click(function() {
+             $('#progressDialog').modal('show');
+
+             var updateForm =document.querySelector('form');
+             var request = new XMLHttpRequest();
+
+             request.upload.addEventListener('progress', function(e){
+                var percent = Math.round((e.loaded / e.total) * 100);
+
+                 $('.progress-bar').css('width', percent+'%');
+                 $('.sr-only').html(percent+'%');
+
+
+             }, false);
+
+             request.addEventListener('load', function(e){
+                var jsonResponse = JSON.parse(e.target.responseText);
+                 if(jsonResponse.errors) {
+                     console.log(jsonResponse.errors);
+                 }
+                 else {
+                         $('#progressDialog').modal('hide');
+                 }
+             }, false);
+
+             updateForm.addEventListener('submit', function(e){
+                 e.preventDefault();
+                 var formData = new FormData(updateForm);
+                 request.open('post',updateForm['action']);
+                 request.send(formData);
+             }, false);
+         });
+                </script>
 
               </div>
           </div>

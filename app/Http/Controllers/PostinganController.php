@@ -11,7 +11,7 @@ class PostinganController extends Controller
 {
     public function index()
     {
-      $all = Posting::with('user')->with('kategoriPosting')->paginate(5);
+      $all = Posting::with('user')->with('kategoriPosting')->orderByRaw('created_at DESC')->paginate(5);
       $kategori = CategoriPosting::all();
 
       return view('guest/postingan')->with('all', $all)->with('kategori', $kategori);

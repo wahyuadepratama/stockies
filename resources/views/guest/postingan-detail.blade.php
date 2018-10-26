@@ -8,7 +8,7 @@
         <div class="row animate-box">
           <div class="row">
 
-            <div class="col-md-8">
+            <div class="col-md-8" style="margin: 4%">
               <h1><center>{{ $data->judul }}</center></h1><br>
               <p>
                 @php echo $data->isi @endphp
@@ -22,7 +22,7 @@
 
             <div class="col-md-1"></div>
 
-            <div class="col-md-3">
+            <div class="col-md-3" style="margin: 4%">
               Artikel Lainnya<br><br>
               @foreach($artikel as $artikel)
               <li> <a href="/blog/{{ $artikel->slug }}"> {{ $artikel->judul }} </a> </li>
@@ -76,7 +76,7 @@
                   @endforeach
 
                   @if(isset(Auth::user()->role_id))
-                  <div class="col-sm-12 tulis_komentar">                    
+                  <div class="col-sm-12 tulis_komentar">
                     <div class="col-md-8 col-sm-8 col-xs-12 komentar_konten ">
                       <div class="col-md-2 col-sm-2 col-xs-4">
                         <img src="{{asset('storage/avatar/'.Auth::user()->avatar)}}">

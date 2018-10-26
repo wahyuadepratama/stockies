@@ -28,7 +28,7 @@
           </li>
         @endif
 
-          <li><a href="/blog">Cerita Foto</a></li>
+          <li><a href="/blog">Tutorial</a></li>
 
           <li class="has-dropdown">
 							<a href="/katalog">Cari Foto</a>

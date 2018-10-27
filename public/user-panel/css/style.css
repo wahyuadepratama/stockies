@@ -1866,7 +1866,7 @@ width: 20px;
   list-style: none;
   margin-bottom: 20px;
   position: relative;
-  padding-left: 30px;
+  /* padding-left: 30px; */
 }
 .fh5co-tabs .fh5co-tab-content-wrap ul li:before {
   font-family: 'icomoon';
@@ -3716,5 +3716,203 @@ margin-top: 7%;
   margin-bottom: -8%;
 }
 
+/* --------------------------------------------------------------------------------------------------- */
+
+/*25 oktober*/
+
+
+
+.blog {
+  min-height: 500px;
+
+
+}
+
+#fh5co-header .blog2 .display-tc  h2 {
+  text-transform: unset;
+
+  margin-top:30%;
+  font-size: 60px;
+}
+
+
+.ket p{
+  margin-left: 1.5%;
+
+
+}
+
+.product .blog_image2 {
+  margin-left: -2%;
+}
+
+
+.blo4 span {
+  font-size: 13px;
+}
+
+.blo4 .txt32 {
+  margin-bottom: 3%;
+}
+
+.blo3 .txt4 {
+  margin-bottom: 10%;
+}
+
+.blog5 {
+
+}
+
+.blog6 .form-group input{
+  font-size: 16px;
+}
+
+
+.blog6 .btn button {
+  height: 55px;
+  margin-top: -13%;
+  margin-left: -50%;
+}
+
+.katakunci {
+  text-align: left;
+  padding-right: -5%;
+  }
+
+.katakunci h3 {
+  margin-top: 10%;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8%;
+  letter-spacing: 3px;
+}
+
+.katakunci p {
+  border-bottom: 1px solid #ccc;
+  margin-top: -4%;
+  padding-bottom: 2%;
+
+}
+
+.katakunci a {
+  color: black;
+}
+
+.katakunci a:hover {
+  color: #bf8b16;
+}
+
+.blog7 li {
+  list-style-type: none;
+}
+
+.popular {
+  text-align: left;
+}
+
+.popular h3 {
+  margin-top: 8%;
+  padding-bottom: 5%;
+  letter-spacing: 3px;
+}
+
+.popular img {
+  margin-bottom: 20%;
+}
+
+.popular .waktu {
+  font-size: 10px;
+}
+
+.popular a {
+  color: black;
+}
+
+.popular a:hover {
+  color: #bf8b16;
+}
+
+.popularx {
+  margin-left: -7%;
+}
+
+.popularx .title {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+}
+
+
+.archive p{
+  font-size: 14px;
+  margin-top: -5%;
+  margin-left: -6%;
+
+}
+
+.archive .waktu {
+  text-align: right;
+}
+
+.blog_detail .konten p {
+  margin-bottom:35%;
+}
+
+.blog_detail .komentar {
+  margin-left: -5%;
+}
+
+.popular .text {
+  margin-top: 30%;
+}
+
+
+@media screen and (max-width: 360px) {
+  .blog7 {
+    margin-bottom: 20%;
+  }
+
+  .popular .text6 {
+    margin-top: -18%;
+    margin-bottom: 10%;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .blog7 {
+    margin-bottom: 20%;
+  }
+
+  .popular .text6 {
+    margin-top: -18%;
+    margin-bottom: 10%;
+  }
+
+  .archive h3 {
+    margin-top: 14%;
+  }
+
+
+
+
+@media screen and (min-width: 768px) {
+  .blog7 {
+    margin-bottom: 20%;
+  }
+
+  .popular .text6 {
+    margin-top: -30%;
+    margin-bottom: 5%;
+  }
+
+  .archive {
+    margin-top: -5%;
+  }
+
+  .katakunci p a{
+    margin-top: 8%;
+  }
+
+
+}
 
 /*PENUTUP*/

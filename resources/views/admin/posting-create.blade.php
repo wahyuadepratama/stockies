@@ -47,7 +47,7 @@
                                   <div class="col-md-12">
                                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
                                     <span>Feature Image:</span><br>
-                                    <img id="blah" src="{{ asset('storage/postingan/no_image.png') }}" alt="your image" width="100px" height="100px" style="margin:2%"/>
+                                    <img id="blah" src="{{ asset('storage/postingan/no_image.png') }}" alt="your image" width="240px" height="100px" style="margin:2%"/>
                                     <input type='file' id="imgInp" class="form-control" name="foto"/>
                                   </div>
                                 </div>

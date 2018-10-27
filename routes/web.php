@@ -20,6 +20,7 @@ Route::get('blog', 'PostinganController@index');
 Route::get('blog/{slug}', 'PostinganController@show');
 Route::get('blog/kategori/{nama}', 'PostinganController@indexCategory');
 Route::post('blog/comment/save/{id}', 'CommentController@saveCommentPosting');
+Route::post('blog/search', 'PostinganController@finderPosting');
 
 Route::get('cart','CartController@index');
 Route::post('cart','CartController@store');
